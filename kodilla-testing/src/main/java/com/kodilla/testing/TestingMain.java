@@ -5,8 +5,8 @@ import com.kodilla.testing.user.SimpleUser;
 
 public class TestingMain {
     public static void main(String[] args) {
-        SimpleUser simpleUser = new SimpleUser("theForumUser");
-        String result = simpleUser.getUsername();
+        final SimpleUser simpleUser = new SimpleUser("theForumUser", "John Smith");
+        final String result = simpleUser.getUsername();
         System.out.println("Test User");
         if (result.equals("theForumUser")) {
             System.out.println("Test ok");
@@ -14,9 +14,9 @@ public class TestingMain {
             System.out.println("Error!");
         }
 
-        Calculator calculator = new Calculator();
-        int a = 123;
-        int b = 23;
+        final Calculator calculator = new Calculator();
+        final int a = 123;
+        final int b = 23;
         System.out.println("Test Calculator Add");
         if (calculator.add(a, b) == 146) {
             System.out.println("Test ok");
