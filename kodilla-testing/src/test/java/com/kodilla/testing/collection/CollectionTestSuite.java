@@ -47,7 +47,7 @@ public class CollectionTestSuite {
         final ArrayList<Integer> evenList = OddNumbersExterminator.exterminate(list);
         //Then
         System.out.println("Test Normal List");
-        Integer[] resultList = new Integer[]{2, 4, 6, 8, 10};
+        final Integer[] resultList = new Integer[]{2, 4, 6, 8, 10};
         Assert.assertArrayEquals(resultList, evenList.toArray(new Integer[evenList.size()]));
     }
 }
