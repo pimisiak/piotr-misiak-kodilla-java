@@ -1,10 +1,11 @@
 package com.kodilla.testing.collection;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.*;
 
 import java.util.ArrayList;
 
-public class CollectionTestSuite {
+public class OddNumbersExterminatorTestSuite {
     @Before
     public void before() {
         System.out.println("Test Case: start");
@@ -33,7 +34,7 @@ public class CollectionTestSuite {
         final ArrayList<Integer> evenList = OddNumbersExterminator.exterminate(list);
         //Then
         System.out.println("Test Empty List");
-        Assert.assertArrayEquals(list.toArray(new Integer[list.size()]), evenList.toArray(new Integer[evenList.size()]));
+        Assert.assertTrue(evenList.isEmpty());
     }
 
     @Test
@@ -47,7 +48,6 @@ public class CollectionTestSuite {
         final ArrayList<Integer> evenList = OddNumbersExterminator.exterminate(list);
         //Then
         System.out.println("Test Normal List");
-        final Integer[] resultList = new Integer[]{2, 4, 6, 8, 10};
-        Assert.assertArrayEquals(resultList, evenList.toArray(new Integer[evenList.size()]));
+        Assert.assertThat(evenList, CoreMatchers.hasItems(2, 4, 6, 8, 10));
     }
 }
