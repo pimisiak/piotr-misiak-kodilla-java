@@ -23,6 +23,5 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
-/config/
 /out/
 /kodilla-testing/out/
