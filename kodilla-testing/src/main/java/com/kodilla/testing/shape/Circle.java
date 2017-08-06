@@ -1,11 +1,10 @@
 package com.kodilla.testing.shape;
 
 public class Circle implements Shape {
-    private final String name;
+    private final String name = "Circle";
     private final double radius;
 
-    public Circle(final String name, final double radius) {
-        this.name = name;
+    public Circle(final double radius) {
         this.radius = radius;
     }
 
@@ -28,7 +27,7 @@ public class Circle implements Shape {
             return false;
         }
         Circle circle = (Circle) o;
-        return Double.compare(circle.radius, radius) == 0 && name.equals(circle.name);
+        return Double.compare(circle.radius, radius) == 0;
     }
 
     @Override
@@ -43,7 +42,7 @@ public class Circle implements Shape {
 
     @Override
     public String toString() {
-        return String.format("%s - %f", getShapeName(), getField());
+        return String.format("%s - %.2f", getShapeName(), getField());
     }
 
     public double getRadius() {

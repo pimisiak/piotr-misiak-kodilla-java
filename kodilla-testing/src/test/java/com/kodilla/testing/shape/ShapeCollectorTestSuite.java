@@ -30,7 +30,7 @@ public class ShapeCollectorTestSuite {
     public void testAddFigure() {
         //Given
         final ShapeCollector shapeCollector = new ShapeCollector();
-        final Shape circle = new Circle("Circle", 2.5);
+        final Shape circle = new Circle(2.5);
         //When
         final boolean result = shapeCollector.addFigure(circle);
         //Then
@@ -43,7 +43,7 @@ public class ShapeCollectorTestSuite {
     public void testRemoveFigure() {
         //Given
         final ShapeCollector shapeCollector = new ShapeCollector();
-        final Shape square = new Square("Square", 3);
+        final Shape square = new Square(3);
         shapeCollector.addFigure(square);
         //When
         final boolean result = shapeCollector.removeFigure(square);
@@ -57,7 +57,7 @@ public class ShapeCollectorTestSuite {
     public void testRemoveFigureNotExisting() {
         //Given
         final ShapeCollector shapeCollector = new ShapeCollector();
-        final Shape square = new Square("Square", 3);
+        final Shape square = new Square(3);
         //When
         final boolean result = shapeCollector.removeFigure(square);
         //Then
@@ -69,7 +69,7 @@ public class ShapeCollectorTestSuite {
     public void testGetFigure() {
         //Given
         final ShapeCollector shapeCollector = new ShapeCollector();
-        final Shape triangle = new Triangle("Triangle", 1.5, 2.0);
+        final Shape triangle = new Triangle(1.5, 2.0);
         shapeCollector.addFigure(triangle);
         //When
         final Shape resultTriangle = shapeCollector.getFigure(0);
@@ -82,9 +82,9 @@ public class ShapeCollectorTestSuite {
     public void testShowFigures() {
         //Given
         final ShapeCollector shapeCollector = new ShapeCollector();
-        final Shape triangle = new Triangle("Triangle", 2, 1);
-        final Shape square = new Square("Square", 1);
-        final Shape circle = new Circle("Circle", 1);
+        final Shape triangle = new Triangle(2, 1);
+        final Shape square = new Square(1);
+        final Shape circle = new Circle(1);
         shapeCollector.addFigure(triangle);
         shapeCollector.addFigure(square);
         shapeCollector.addFigure(circle);
