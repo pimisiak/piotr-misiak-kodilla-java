@@ -3,10 +3,11 @@ package com.kodilla.testing.shape;
 import com.google.common.base.Preconditions;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.StringJoiner;
 
 public class ShapeCollector {
-    private final ArrayList<Shape> shapes = new ArrayList<Shape>();
+    private final List<Shape> shapes = new ArrayList<Shape>();
 
     public void addFigure(final Shape shape) {
         Preconditions.checkNotNull(shape);
@@ -19,7 +20,7 @@ public class ShapeCollector {
     }
 
     public Shape getFigure(final int num) {
-        Preconditions.checkArgument(num >= 0 && num < getShapeCollectorSize());
+        Preconditions.checkArgument(num >= 0 && num < size());
         return shapes.get(num);
     }
 
@@ -31,7 +32,7 @@ public class ShapeCollector {
         return joiner.toString();
     }
 
-    public int getShapeCollectorSize() {
+    public int size() {
         return shapes.size();
     }
 }
