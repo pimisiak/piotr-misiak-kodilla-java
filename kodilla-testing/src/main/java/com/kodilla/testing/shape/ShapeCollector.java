@@ -8,19 +8,14 @@ import java.util.StringJoiner;
 public class ShapeCollector {
     private final ArrayList<Shape> shapes = new ArrayList<Shape>();
 
-    public boolean addFigure(final Shape shape) {
+    public void addFigure(final Shape shape) {
         Preconditions.checkNotNull(shape);
         shapes.add(shape);
-        return true;
     }
 
     public boolean removeFigure(final Shape shape) {
         Preconditions.checkNotNull(shape);
-        if (shapes.contains(shape)) {
-            shapes.remove(shape);
-            return true;
-        }
-        return false;
+        return shapes.remove(shape);
     }
 
     public Shape getFigure(final int num) {

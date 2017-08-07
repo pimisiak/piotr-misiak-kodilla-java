@@ -4,6 +4,7 @@ import org.junit.*;
 
 public class ShapeCollectorTestSuite {
     private static int testNumber = 0;
+    private ShapeCollector shapeCollector;
 
     @BeforeClass
     public static void beforeTests() {
@@ -18,6 +19,7 @@ public class ShapeCollectorTestSuite {
     @Before
     public void beforeTest() {
         testNumber++;
+        shapeCollector = new ShapeCollector();
         System.out.printf("Test #%d start%n", testNumber);
     }
 
@@ -29,20 +31,17 @@ public class ShapeCollectorTestSuite {
     @Test
     public void testAddFigure() {
         //Given
-        final ShapeCollector shapeCollector = new ShapeCollector();
         final Shape circle = new Circle(2.5);
         //When
-        final boolean result = shapeCollector.addFigure(circle);
+        shapeCollector.addFigure(circle);
         //Then
         System.out.println("Test addFigure");
-        Assert.assertTrue(result);
         Assert.assertEquals(1, shapeCollector.getShapeCollectorSize());
     }
 
     @Test
     public void testRemoveFigure() {
         //Given
-        final ShapeCollector shapeCollector = new ShapeCollector();
         final Shape square = new Square(3);
         shapeCollector.addFigure(square);
         //When
@@ -56,7 +55,6 @@ public class ShapeCollectorTestSuite {
     @Test
     public void testRemoveFigureNotExisting() {
         //Given
-        final ShapeCollector shapeCollector = new ShapeCollector();
         final Shape square = new Square(3);
         //When
         final boolean result = shapeCollector.removeFigure(square);
@@ -68,7 +66,6 @@ public class ShapeCollectorTestSuite {
     @Test
     public void testGetFigure() {
         //Given
-        final ShapeCollector shapeCollector = new ShapeCollector();
         final Shape triangle = new Triangle(1.5, 2.0);
         shapeCollector.addFigure(triangle);
         //When
@@ -81,7 +78,6 @@ public class ShapeCollectorTestSuite {
     @Test
     public void testShowFigures() {
         //Given
-        final ShapeCollector shapeCollector = new ShapeCollector();
         final Shape triangle = new Triangle(2, 1);
         final Shape square = new Square(1);
         final Shape circle = new Circle(1);
