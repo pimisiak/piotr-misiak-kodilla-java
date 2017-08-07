@@ -3,6 +3,7 @@ package com.kodilla.testing.forum.statistics;
 import org.junit.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.Mockito.mock;
@@ -10,6 +11,8 @@ import static org.mockito.Mockito.when;
 
 public class AdvancedStatisticsTestSuite {
     private static int testNumber = 0;
+    private Statistics statistics;
+    private AdvancedStatistics advStatistics;
 
     @BeforeClass
     public static void beforeTests() {
@@ -24,6 +27,8 @@ public class AdvancedStatisticsTestSuite {
     @Before
     public void beforeTest() {
         testNumber++;
+        statistics = mock(Statistics.class);
+        advStatistics = new AdvancedStatistics();
         System.out.printf("Test #%d start%n", testNumber);
     }
 
@@ -35,12 +40,9 @@ public class AdvancedStatisticsTestSuite {
     @Test
     public void testCalculateAdvStatisticsNoUsers() {
         //Given
-        final Statistics statistics = mock(Statistics.class);
-        final AdvancedStatistics advStatistics = new AdvancedStatistics();
-        final List<String> users = new ArrayList<String>();
         when(statistics.commentsCount()).thenReturn(100);
         when(statistics.postsCount()).thenReturn(100);
-        when(statistics.usersNames()).thenReturn(users);
+        when(statistics.usersNames()).thenReturn(Collections.emptyList());
         //When
         advStatistics.calculateAdvStatistics(statistics);
         //Then
@@ -53,8 +55,6 @@ public class AdvancedStatisticsTestSuite {
     @Test
     public void testCalculateAdvStatisticsNoComments() {
         //Given
-        final Statistics statistics = mock(Statistics.class);
-        final AdvancedStatistics advStatistics = new AdvancedStatistics();
         final List<String> users = new ArrayList<String>();
         for (int i = 0; i < 100; i++) {
             users.add(String.format("user%d", i));
@@ -74,8 +74,6 @@ public class AdvancedStatisticsTestSuite {
     @Test
     public void testCalculateAdvStatisticsNoPosts() {
         //Given
-        final Statistics statistics = mock(Statistics.class);
-        final AdvancedStatistics advStatistics = new AdvancedStatistics();
         final List<String> users = new ArrayList<String>();
         for (int i = 0; i < 100; i++) {
             users.add(String.format("user%d", i));
@@ -95,8 +93,6 @@ public class AdvancedStatisticsTestSuite {
     @Test
     public void testCalculateAdvStatisticsMoreComments() {
         //Given
-        final Statistics statistics = mock(Statistics.class);
-        final AdvancedStatistics advStatistics = new AdvancedStatistics();
         final List<String> users = new ArrayList<String>();
         for (int i = 0; i < 150; i++) {
             users.add(String.format("user%d", i));
@@ -116,8 +112,6 @@ public class AdvancedStatisticsTestSuite {
     @Test
     public void testCalculateAdvStatisticsMorePosts() {
         //Given
-        final Statistics statistics = mock(Statistics.class);
-        final AdvancedStatistics advStatistics = new AdvancedStatistics();
         final List<String> users = new ArrayList<String>();
         for (int i = 0; i < 1500; i++) {
             users.add(String.format("user%d", i));

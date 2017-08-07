@@ -10,30 +10,6 @@ public class AdvancedStatistics {
     private double averageNumberOfCommentsPerUser;
     private double averageNumberOfCommentsPerPost;
 
-    public void calculateAdvStatistics(final Statistics statistics) {
-        Preconditions.checkArgument(statistics.usersNames().size() >= 0);
-        Preconditions.checkArgument(statistics.postsCount() >= 0);
-        Preconditions.checkArgument(statistics.commentsCount() >= 0);
-
-        numberOfUsers = statistics.usersNames().size();
-        numberOfPosts = statistics.postsCount();
-        numberOfComments = statistics.commentsCount();
-
-        if (numberOfUsers == 0) {
-            averageNumberOfPostsPerUser = 0;
-            averageNumberOfCommentsPerUser = 0;
-        } else {
-            averageNumberOfPostsPerUser = (double) numberOfPosts / numberOfUsers;
-            averageNumberOfCommentsPerUser = (double) numberOfComments / numberOfUsers;
-        }
-
-        if (numberOfPosts == 0) {
-            averageNumberOfCommentsPerPost = 0;
-        } else {
-            averageNumberOfCommentsPerPost = (double) numberOfComments / numberOfPosts;
-        }
-    }
-
     public int getNumberOfUsers() {
         return numberOfUsers;
     }
@@ -56,5 +32,39 @@ public class AdvancedStatistics {
 
     public double getAverageNumberOfCommentsPerPost() {
         return averageNumberOfCommentsPerPost;
+    }
+
+    public void calculateAdvStatistics(final Statistics statistics) {
+        validateArgument(statistics);
+        storeSimpleStats(statistics);
+        calculateAdvStats();
+    }
+
+    private void validateArgument(final Statistics statistics) {
+        Preconditions.checkArgument(statistics.usersNames().size() >= 0);
+        Preconditions.checkArgument(statistics.postsCount() >= 0);
+        Preconditions.checkArgument(statistics.commentsCount() >= 0);
+    }
+
+    private void storeSimpleStats(final Statistics statistics) {
+        numberOfUsers = statistics.usersNames().size();
+        numberOfPosts = statistics.postsCount();
+        numberOfComments = statistics.commentsCount();
+    }
+
+    private void calculateAdvStats() {
+        if (numberOfUsers == 0) {
+            averageNumberOfPostsPerUser = 0;
+            averageNumberOfCommentsPerUser = 0;
+        } else {
+            averageNumberOfPostsPerUser = (double) numberOfPosts / numberOfUsers;
+            averageNumberOfCommentsPerUser = (double) numberOfComments / numberOfUsers;
+        }
+
+        if (numberOfPosts == 0) {
+            averageNumberOfCommentsPerPost = 0;
+        } else {
+            averageNumberOfCommentsPerPost = (double) numberOfComments / numberOfPosts;
+        }
     }
 }
