@@ -1,10 +1,10 @@
 package com.kodilla.testing.shape;
 
 public class Square implements Shape {
-    private final String name = "Square";
+    private static final String name = "Square";
     private final double width;
 
-    public Square(final double width) {
+    Square(final double width) {
         this.width = width;
     }
 
@@ -15,7 +15,7 @@ public class Square implements Shape {
 
     @Override
     public double getField() {
-        return getWidth() * getWidth();
+        return width * width;
     }
 
     @Override
@@ -43,9 +43,5 @@ public class Square implements Shape {
     @Override
     public String toString() {
         return String.format("%s - %.2f", getShapeName(), getField());
-    }
-
-    public double getWidth() {
-        return width;
     }
 }

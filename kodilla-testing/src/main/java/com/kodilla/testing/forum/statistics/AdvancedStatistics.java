@@ -2,7 +2,7 @@ package com.kodilla.testing.forum.statistics;
 
 import com.google.common.base.Preconditions;
 
-public class AdvancedStatistics {
+class AdvancedStatistics {
     private int numberOfUsers;
     private int numberOfPosts;
     private int numberOfComments;
@@ -10,38 +10,25 @@ public class AdvancedStatistics {
     private double averageNumberOfCommentsPerUser;
     private double averageNumberOfCommentsPerPost;
 
-    public int getNumberOfUsers() {
-        return numberOfUsers;
-    }
-
-    public int getNumberOfPosts() {
-        return numberOfPosts;
-    }
-
-    public int getNumberOfComments() {
-        return numberOfComments;
-    }
-
-    public double getAverageNumberOfPostsPerUser() {
+    double getAverageNumberOfPostsPerUser() {
         return averageNumberOfPostsPerUser;
     }
 
-    public double getAverageNumberOfCommentsPerUser() {
+    double getAverageNumberOfCommentsPerUser() {
         return averageNumberOfCommentsPerUser;
     }
 
-    public double getAverageNumberOfCommentsPerPost() {
+    double getAverageNumberOfCommentsPerPost() {
         return averageNumberOfCommentsPerPost;
     }
 
-    public void calculateAdvStatistics(final Statistics statistics) {
+    void calculateAdvStatistics(final Statistics statistics) {
         validateArgument(statistics);
         storeSimpleStats(statistics);
         calculateAdvStats();
     }
 
     private void validateArgument(final Statistics statistics) {
-        Preconditions.checkArgument(statistics.usersNames().size() >= 0);
         Preconditions.checkArgument(statistics.postsCount() >= 0);
         Preconditions.checkArgument(statistics.commentsCount() >= 0);
     }

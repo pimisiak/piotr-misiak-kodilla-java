@@ -1,9 +1,14 @@
 package com.kodilla.testing.shape;
 
-import org.junit.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 public class ShapeCollectorTestSuite {
-    private static int testNumber = 0;
+    private int testNumber = 0;
     private ShapeCollector shapeCollector;
 
     @BeforeClass

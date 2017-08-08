@@ -1,11 +1,11 @@
 package com.kodilla.testing.shape;
 
 public class Triangle implements Shape {
-    private final String name = "Triangle";
+    private static final String name = "Triangle";
     private final double height;
     private final double base;
 
-    public Triangle(final double height, final double base) {
+    Triangle(final double height, final double base) {
         this.height = height;
         this.base = base;
     }
@@ -17,7 +17,7 @@ public class Triangle implements Shape {
 
     @Override
     public double getField() {
-        return 0.5 * getBase() * getHeight();
+        return 0.5 * base * height;
     }
 
     @Override
@@ -46,14 +46,6 @@ public class Triangle implements Shape {
 
     @Override
     public String toString() {
-        return String.format("%s - %.2f", getShapeName(), getField());
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public double getBase() {
-        return base;
+        return String.format("%s - %.2f", name, getField());
     }
 }

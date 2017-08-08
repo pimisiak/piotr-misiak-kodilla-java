@@ -45,6 +45,12 @@ public class ForumUser {
         return comments.get(commentNumber);
     }
 
+    /**
+     * Method removing post from posts collection.
+     *
+     * @param post Post parameter of class ForumPost
+     * @return Return boolean stating if post has been removed.
+     */
     public boolean removePost(final ForumPost post) {
         Preconditions.checkNotNull(post);
         if (posts.contains(post)) {
@@ -54,6 +60,12 @@ public class ForumUser {
         return false;
     }
 
+    /**
+     * Method removing comment from comments collection.
+     *
+     * @param comment Comment parameter of class ForumComment
+     * @return Return boolean stating if comment has been removed.
+     */
     public boolean removeComment(final ForumComment comment) {
         Preconditions.checkNotNull(comment);
         if (comments.contains(comment)) {

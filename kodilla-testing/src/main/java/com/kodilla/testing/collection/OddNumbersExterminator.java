@@ -5,11 +5,11 @@ import com.google.common.base.Preconditions;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class OddNumbersExterminator {
+final class OddNumbersExterminator {
     private OddNumbersExterminator() {
     }
 
-    public static ArrayList<Integer> exterminate(final List<Integer> list) {
+    static ArrayList<Integer> exterminate(final List<Integer> list) {
         Preconditions.checkNotNull(list);
         final ArrayList<Integer> evenList = new ArrayList<Integer>();
         for (Integer num : list) {

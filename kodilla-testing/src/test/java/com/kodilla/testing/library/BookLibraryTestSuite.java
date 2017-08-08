@@ -1,14 +1,18 @@
 package com.kodilla.testing.library;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.*;
+import org.junit.Before;
+import org.junit.Test;
 
 public class BookLibraryTestSuite {
     private LibraryDatabase libraryDatabaseMock;
@@ -109,7 +113,7 @@ public class BookLibraryTestSuite {
     private List<Book> generateListOfNBooks(final int booksQuantity) {
         final List<Book> resultList = new ArrayList<Book>();
         for (int n = 1; n <= booksQuantity; n++) {
-            Book book = new Book("Title" + n, "Author" + n, 1970 +n);
+            Book book = new Book("Title" + n, "Author" + n, 1970 + n);
             resultList.add(book);
         }
         return resultList;

@@ -6,25 +6,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
-public class ShapeCollector {
+class ShapeCollector {
     private final List<Shape> shapes = new ArrayList<Shape>();
 
-    public void addFigure(final Shape shape) {
+    void addFigure(final Shape shape) {
         Preconditions.checkNotNull(shape);
         shapes.add(shape);
     }
 
-    public boolean removeFigure(final Shape shape) {
+    boolean removeFigure(final Shape shape) {
         Preconditions.checkNotNull(shape);
         return shapes.remove(shape);
     }
 
-    public Shape getFigure(final int num) {
+    Shape getFigure(final int num) {
         Preconditions.checkArgument(num >= 0 && num < size());
         return shapes.get(num);
     }
 
-    public String showFigures() {
+    String showFigures() {
         final StringJoiner joiner = new StringJoiner("; ");
         for (Shape shape : shapes) {
             joiner.add(shape.toString());
@@ -32,7 +32,7 @@ public class ShapeCollector {
         return joiner.toString();
     }
 
-    public int size() {
+    int size() {
         return shapes.size();
     }
 }

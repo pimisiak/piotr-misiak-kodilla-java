@@ -1,16 +1,21 @@
 package com.kodilla.testing.forum.statistics;
 
-import org.junit.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 public class AdvancedStatisticsTestSuite {
-    private static int testNumber = 0;
+    private int testNumber = 0;
     private Statistics statistics;
     private AdvancedStatistics advStatistics;
 

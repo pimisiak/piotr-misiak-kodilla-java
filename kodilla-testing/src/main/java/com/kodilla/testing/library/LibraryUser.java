@@ -5,7 +5,7 @@ public class LibraryUser {
     private String lastName;
     private String peselId;
 
-    public LibraryUser(final String firstName, final String lastName, final String peselId) {
+    LibraryUser(final String firstName, final String lastName, final String peselId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.peselId = peselId;

@@ -5,6 +5,13 @@ public class ForumComment {
     private final String commentBody;
     private final String author;
 
+    /**
+     * Constructor of class ForumComment.
+     *
+     * @param forumPost Post
+     * @param commentBody Comment Body of the specified Post
+     * @param author Author of the Comment
+     */
     public ForumComment(final ForumPost forumPost, final String commentBody, final String author) {
         this.forumPost = forumPost;
         this.commentBody = commentBody;

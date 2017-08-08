@@ -1,10 +1,10 @@
 package com.kodilla.testing.shape;
 
 public class Circle implements Shape {
-    private final String name = "Circle";
+    private static final String name = "Circle";
     private final double radius;
 
-    public Circle(final double radius) {
+    Circle(final double radius) {
         this.radius = radius;
     }
 
@@ -15,7 +15,7 @@ public class Circle implements Shape {
 
     @Override
     public double getField() {
-        return Math.PI * getRadius() * getRadius();
+        return Math.PI * radius * radius;
     }
 
     @Override
@@ -43,9 +43,5 @@ public class Circle implements Shape {
     @Override
     public String toString() {
         return String.format("%s - %.2f", getShapeName(), getField());
-    }
-
-    public double getRadius() {
-        return radius;
     }
 }

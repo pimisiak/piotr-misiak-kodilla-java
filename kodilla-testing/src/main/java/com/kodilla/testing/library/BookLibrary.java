@@ -5,14 +5,14 @@ import com.google.common.base.Preconditions;
 import java.util.Collections;
 import java.util.List;
 
-public class BookLibrary {
+class BookLibrary {
     private LibraryDatabase libraryDatabase;
 
-    public BookLibrary(final LibraryDatabase libraryDatabase) {
+    BookLibrary(final LibraryDatabase libraryDatabase) {
         this.libraryDatabase = libraryDatabase;
     }
 
-    public List<Book> listBooksWithCondition(final String titleFragment) {
+    List<Book> listBooksWithCondition(final String titleFragment) {
         if (titleFragment.length() < 3) {
             return Collections.emptyList();
         }
@@ -23,7 +23,7 @@ public class BookLibrary {
         return resultList;
     }
 
-    public List<Book> listBooksInHandsOf(final LibraryUser libraryUser) {
+    List<Book> listBooksInHandsOf(final LibraryUser libraryUser) {
         Preconditions.checkNotNull(libraryUser);
         return libraryDatabase.listBooksInHandsOf(libraryUser);
     }
