@@ -40,6 +40,7 @@ public class StreamMain {
             }
             return builder.toString();
         });
+
         final String poem4 = poemBeautifier.beautify("This is a poem!", (poem) -> {
             StringBuilder builder = new StringBuilder(poem);
             return builder.reverse().toString();
