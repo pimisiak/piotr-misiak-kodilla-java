@@ -4,7 +4,7 @@ import java.util.stream.Stream;
 
 public final class NumbersGenerator {
     /**
-     * Generate even numbers.
+     * Generates even numbers.
      * @param max Limits the size of the Stream
      */
     public static void generateEven(final int max) {
