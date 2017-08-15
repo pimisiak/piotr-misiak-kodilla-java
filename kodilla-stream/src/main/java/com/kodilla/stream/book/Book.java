@@ -6,6 +6,14 @@ public final class Book {
     private final int yearOfPublication;
     private final String signature;
 
+    /**
+     * Constructor for a Book class.
+     *
+     * @param author Author of a book
+     * @param title Title of a book
+     * @param yearOfPublication Year of publication of a book
+     * @param signature Signature of a book
+     */
     public Book(final String author, final String title, final int yearOfPublication, final String signature) {
         this.author = author;
         this.title = title;

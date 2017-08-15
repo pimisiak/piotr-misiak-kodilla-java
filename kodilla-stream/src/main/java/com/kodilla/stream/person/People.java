@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class People {
+    /**
+     * Creates list of people.
+     *
+     * @return list of people
+     */
     public static List<String> getList() {
         final List<String> list = new ArrayList<>();
         list.add("John Smith");
