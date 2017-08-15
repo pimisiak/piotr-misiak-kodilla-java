@@ -36,6 +36,10 @@ public class ForumUserTestSuite {
         user2.addFriend(user3);
 
         user9.addFriend(user3);
+        user9.addFriend(user4);
+        user9.addFriend(user5);
+        user9.addFriend(user6);
+        user9.addFriend(user8);
 
         //Then
         //user1 has 3 friends with following locations:
@@ -81,6 +85,10 @@ public class ForumUserTestSuite {
         user2.addFriend(user3);
 
         user9.addFriend(user3);
+        user9.addFriend(user4);
+        user9.addFriend(user5);
+        user9.addFriend(user6);
+        user9.addFriend(user8);
 
         //Then
         //user1 has 3 friends with following friends and their locations:
