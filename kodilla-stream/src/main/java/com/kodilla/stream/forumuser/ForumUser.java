@@ -9,12 +9,12 @@ public final class ForumUser {
     private final LocalDate birthday;
     private final int numberOfPosts;
 
-    ForumUser(final int idNumber, final String userName, final char sex, final LocalDate birthday, final int numberOfPosts) {
-        this.idNumber = idNumber;
-        this.userName = userName;
-        this.sex = sex;
-        this.birthday = birthday;
-        this.numberOfPosts = numberOfPosts;
+    private ForumUser(final ForumUserBuilder builder) {
+        this.idNumber = builder.idNumber;
+        this.userName = builder.userName;
+        this.sex = builder.sex;
+        this.birthday = builder.birthday;
+        this.numberOfPosts = builder.numberOfPosts;
     }
 
     public int getIdNumber() {
@@ -41,5 +41,37 @@ public final class ForumUser {
     public String toString() {
         return "ForumUser{" + "idNumber=" + idNumber + ", userName='" + userName + '\'' + ", sex=" + sex + ", birthday=" + birthday
                 + ", numberOfPosts=" + numberOfPosts + '}';
+    }
+
+    static class ForumUserBuilder {
+        private final int idNumber;
+        private final String userName;
+        private char sex;
+        private LocalDate birthday;
+        private int numberOfPosts;
+
+        ForumUserBuilder(final int idNumber, final String userName) {
+            this.idNumber = idNumber;
+            this.userName = userName;
+        }
+
+        ForumUserBuilder sex(final char sex) {
+            this.sex = sex;
+            return this;
+        }
+
+        ForumUserBuilder birthday(final LocalDate birthday) {
+            this.birthday = birthday;
+            return this;
+        }
+
+        ForumUserBuilder numberOfPosts(final int numberOfPosts) {
+            this.numberOfPosts = numberOfPosts;
+            return this;
+        }
+
+        ForumUser build() {
+            return new ForumUser(this);
+        }
     }
 }

@@ -23,7 +23,9 @@ public class StreamMain {
                 .filter(user -> user.getNumberOfPosts() > 1)
                 .collect(Collectors.toMap(ForumUser::getIdNumber, user -> user));
 
-        forumUsers.entrySet().stream().map(entry -> entry.getKey() + ":" + entry.getValue()).forEach(System.out::println);
+        forumUsers.entrySet().stream()
+                .map(entry -> entry.getKey() + ":" + entry.getValue())
+                .forEach(System.out::println);
 
         //Beautify poem assignment
         System.out.println("Beautify Poem!");
