@@ -1,11 +1,12 @@
 package com.kodilla.stream.sand;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.math.BigDecimal;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Test;
 
 public class SandStorageTestSuite {
     @Test
@@ -17,7 +18,7 @@ public class SandStorageTestSuite {
         continents.add(new Africa());
         //When
         BigDecimal totalSand = BigDecimal.ZERO;
-        for(SandStorage continent : continents){
+        for (SandStorage continent : continents) {
             totalSand = totalSand.add(continent.getSandBeansQuantity());
         }
         //Then
