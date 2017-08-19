@@ -1,5 +1,6 @@
 package com.kodilla.stream.world;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,7 +21,7 @@ final class Continent {
     }
 
     Set<Country> getCountries() {
-        return countries;
+        return Collections.unmodifiableSet(countries);
     }
 
     @Override
