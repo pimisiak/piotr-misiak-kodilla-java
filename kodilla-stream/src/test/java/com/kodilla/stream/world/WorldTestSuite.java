@@ -25,7 +25,7 @@ public class WorldTestSuite {
         return world;
     }
 
-    private void buildTestContinentEurope(World world) {
+    private void buildTestContinentEurope(final World world) {
         final Continent europe = new Continent("Europe");
         europe.addCountry(new Country("Poland", new BigDecimal("38494000")));
         europe.addCountry(new Country("Germany", new BigDecimal("82900000")));
@@ -33,7 +33,7 @@ public class WorldTestSuite {
         world.addContinent(europe);
     }
 
-    private void buildTestContinentAsia(World world) {
+    private void buildTestContinentAsia(final World world) {
         final Continent asia = new Continent("Asia");
         asia.addCountry(new Country("China", new BigDecimal("1387160793")));
         asia.addCountry(new Country("India", new BigDecimal("1299499000")));
@@ -41,7 +41,7 @@ public class WorldTestSuite {
         world.addContinent(asia);
     }
 
-    private void buildTestContinentAfrica(World world) {
+    private void buildTestContinentAfrica(final World world) {
         final Continent africa = new Continent("Africa");
         africa.addCountry(new Country("Nigeria", new BigDecimal("181563000")));
         africa.addCountry(new Country("Egypt", new BigDecimal("89125000")));
