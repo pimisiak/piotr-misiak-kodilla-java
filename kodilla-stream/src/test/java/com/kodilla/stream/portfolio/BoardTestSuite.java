@@ -1,15 +1,15 @@
 package com.kodilla.stream.portfolio;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import static java.time.temporal.ChronoUnit.DAYS;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static java.time.temporal.ChronoUnit.DAYS;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 public class BoardTestSuite {
     private Board project;

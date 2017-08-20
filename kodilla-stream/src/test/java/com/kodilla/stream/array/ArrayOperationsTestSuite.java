@@ -1,9 +1,9 @@
 package com.kodilla.stream.array;
 
+import java.util.stream.IntStream;
+
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.stream.IntStream;
 
 public class ArrayOperationsTestSuite {
     @Test

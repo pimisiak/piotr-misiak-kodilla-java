@@ -2,7 +2,6 @@ package com.kodilla.stream.array;
 
 import com.google.common.base.Preconditions;
 
-import java.util.OptionalDouble;
 import java.util.stream.IntStream;
 
 public interface ArrayOperations {
