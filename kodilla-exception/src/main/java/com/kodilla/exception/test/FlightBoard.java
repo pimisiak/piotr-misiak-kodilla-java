@@ -13,7 +13,7 @@ final class FlightBoard {
         throw new RouteNotFoundException("Error: Airport missing.");
     }
 
-    void addAirport(final String name, final boolean availabe) {
-        airports.put(name, availabe);
+    void addAirport(final String name, final boolean available) {
+        airports.put(name, available);
     }
 }
