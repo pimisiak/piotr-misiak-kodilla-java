@@ -23,22 +23,20 @@ public class FlightBoardTestSuite {
         final Flight flight = new Flight("WAW", "XXX");
         //When
         flightBoard.findFlight(flight);
+        //Then
+        //exception RouteNotFoundException should be thrown
     }
 
     @Test
-    public void testFindFlight() {
+    public void testFindFlight() throws RouteNotFoundException {
         //Given
         final Flight flight0 = new Flight("WAW", "JFK");
         final Flight flight1 = new Flight("WAW", "NRT");
         //When
-        try {
-            final boolean result0 = flightBoard.findFlight(flight0);
-            final boolean result1 = flightBoard.findFlight(flight1);
-            //Then
-            Assert.assertFalse(result0);
-            Assert.assertTrue(result1);
-        } catch (RouteNotFoundException e) {
-            Assert.fail();
-        }
+        final boolean result0 = flightBoard.findFlight(flight0);
+        final boolean result1 = flightBoard.findFlight(flight1);
+        //Then
+        Assert.assertFalse(result0);
+        Assert.assertTrue(result1);
     }
 }
