@@ -13,15 +13,24 @@ import org.junit.Test;
 
 public class BoardTestSuite {
     private Board project;
+    private User user1;
+    private User user2;
+    private User user3;
+    private User user4;
 
     @Before
     public void before() {
-        project = prepareTestData();
+        project = new Board("Project Weather Prediction");
+        user1 = new User("developer1", "John Smith");
+        user2 = new User("projectmanager1", "Nina White");
+        user3 = new User("developer2", "Emilia Stephanson");
+        user4 = new User("developer3", "Konrad Bridge");
     }
 
     @Test
     public void testAddTaskListAverageWorkingOnTask() {
         //Given
+        project.addTaskList(prepareTaskListInProgress());
         //When
         final double average = project.getTaskLists().stream()
                 .filter(tl -> tl.getName().equals("In progress"))
@@ -36,6 +45,7 @@ public class BoardTestSuite {
     @Test
     public void testAddTaskListFindLongTasks() {
         //Given
+        project.addTaskList(prepareTaskListInProgress());
         //When
         final List<TaskList> inProgressTasks = new ArrayList<>();
         inProgressTasks.add(new TaskList("In progress"));
@@ -52,6 +62,8 @@ public class BoardTestSuite {
     @Test
     public void testAddTaskListFindOutdatedTasks() {
         //Given
+        project.addTaskList(prepareTaskListToDo());
+        project.addTaskList(prepareTaskListInProgress());
         //When
         final List<TaskList> undoneTasks = new ArrayList<>();
         undoneTasks.add(new TaskList("To do"));
@@ -69,6 +81,9 @@ public class BoardTestSuite {
     @Test
     public void testAddTaskListFindUsersTasks() {
         //Given
+        project.addTaskList(prepareTaskListToDo());
+        project.addTaskList(prepareTaskListInProgress());
+        project.addTaskList(prepareTaskListDone());
         //When
         final User user = new User("developer1", "John Smith");
         final List<Task> tasks = project.getTaskLists().stream()
@@ -84,27 +99,17 @@ public class BoardTestSuite {
     @Test
     public void testAddTaskList() {
         //Given
+        project.addTaskList(prepareTaskListToDo());
+        project.addTaskList(prepareTaskListInProgress());
+        project.addTaskList(prepareTaskListDone());
         //When
+        int result = project.getTaskLists().size();
         //Then
-        Assert.assertEquals(3, project.getTaskLists().size());
+        Assert.assertEquals(3, result);
     }
 
-    private Board prepareTestData() {
-        //users
-        final User user1 = new User("developer1", "John Smith");
-        final User user2 = new User("projectmanager1", "Nina White");
-        final User user3 = new User("developer2", "Emilia Stephanson");
-        final User user4 = new User("developer3", "Konrad Bridge");
-
-        //tasks
-        final Task task1 = new Task.TaskBuilder()
-                .title("Microservice for taking temperature")
-                .description("Write and test the microservice taking the temperaure from external service")
-                .assignedUser(user1)
-                .creator(user2)
-                .created(LocalDate.now().minusDays(20))
-                .deadline(LocalDate.now().plusDays(30))
-                .build();
+    private TaskList prepareTaskListInProgress() {
+        final TaskList taskListInProgress = new TaskList("In progress");
         final Task task2 = new Task.TaskBuilder()
                 .title("HQLs for analysis")
                 .description("Prepare some HQL queries for analysis")
@@ -112,14 +117,6 @@ public class BoardTestSuite {
                 .creator(user2)
                 .created(LocalDate.now().minusDays(20))
                 .deadline(LocalDate.now().minusDays(5))
-                .build();
-        final Task task3 = new Task.TaskBuilder()
-                .title("Temperatures entity")
-                .description("Prepare entity for temperatures")
-                .assignedUser(user3)
-                .creator(user2)
-                .created(LocalDate.now().minusDays(20))
-                .deadline(LocalDate.now().plusDays(15))
                 .build();
         final Task task4 = new Task.TaskBuilder()
                 .title("Own logger")
@@ -137,6 +134,37 @@ public class BoardTestSuite {
                 .created(LocalDate.now())
                 .deadline(LocalDate.now().plusDays(5))
                 .build();
+        taskListInProgress.addTask(task5);
+        taskListInProgress.addTask(task4);
+        taskListInProgress.addTask(task2);
+        return taskListInProgress;
+    }
+
+    private TaskList prepareTaskListToDo() {
+        final TaskList taskListToDo = new TaskList("To do");
+        final Task task1 = new Task.TaskBuilder()
+                .title("Microservice for taking temperature")
+                .description("Write and test the microservice taking the temperaure from external service")
+                .assignedUser(user1)
+                .creator(user2)
+                .created(LocalDate.now().minusDays(20))
+                .deadline(LocalDate.now().plusDays(30))
+                .build();
+        final Task task3 = new Task.TaskBuilder()
+                .title("Temperatures entity")
+                .description("Prepare entity for temperatures")
+                .assignedUser(user3)
+                .creator(user2)
+                .created(LocalDate.now().minusDays(20))
+                .deadline(LocalDate.now().plusDays(15))
+                .build();
+        taskListToDo.addTask(task1);
+        taskListToDo.addTask(task3);
+        return taskListToDo;
+    }
+
+    private TaskList prepareTaskListDone() {
+        final TaskList taskListDone = new TaskList("Done");
         final Task task6 = new Task.TaskBuilder()
                 .title("Use Streams")
                 .description("Use Streams rather than for-loops in predictions")
@@ -145,23 +173,7 @@ public class BoardTestSuite {
                 .created(LocalDate.now().minusDays(15))
                 .deadline(LocalDate.now().minusDays(2))
                 .build();
-
-        //taskLists
-        final TaskList taskListToDo = new TaskList("To do");
-        taskListToDo.addTask(task1);
-        taskListToDo.addTask(task3);
-        final TaskList taskListInProgress = new TaskList("In progress");
-        taskListInProgress.addTask(task5);
-        taskListInProgress.addTask(task4);
-        taskListInProgress.addTask(task2);
-        final TaskList taskListDone = new TaskList("Done");
         taskListDone.addTask(task6);
-
-        //board
-        final Board project = new Board("Project Weather Prediction");
-        project.addTaskList(taskListToDo);
-        project.addTaskList(taskListInProgress);
-        project.addTaskList(taskListDone);
-        return project;
+        return taskListDone;
     }
 }
