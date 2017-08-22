@@ -32,8 +32,8 @@ public class FlightBoardTestSuite {
         final Flight flight1 = new Flight("WAW", "NRT");
         //When
         try {
-            boolean result0 = flightBoard.findFlight(flight0);
-            boolean result1 = flightBoard.findFlight(flight1);
+            final boolean result0 = flightBoard.findFlight(flight0);
+            final boolean result1 = flightBoard.findFlight(flight1);
             //Then
             Assert.assertFalse(result0);
             Assert.assertTrue(result1);
