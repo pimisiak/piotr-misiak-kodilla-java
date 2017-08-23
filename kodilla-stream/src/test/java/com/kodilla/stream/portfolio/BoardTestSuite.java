@@ -13,10 +13,10 @@ import org.junit.Test;
 
 public class BoardTestSuite {
     private Board project;
-    private User user1 = new User("developer1", "John Smith");
-    private User user2 = new User("projectmanager1", "Nina White");
-    private User user3 = new User("developer2", "Emilia Stephanson");
-    private User user4 = new User("developer3", "Konrad Bridge");
+    private final User user1 = new User("developer1", "John Smith");
+    private final User user2 = new User("projectmanager1", "Nina White");
+    private final User user3 = new User("developer2", "Emilia Stephanson");
+    private final User user4 = new User("developer3", "Konrad Bridge");
 
     @Before
     public void before() {
