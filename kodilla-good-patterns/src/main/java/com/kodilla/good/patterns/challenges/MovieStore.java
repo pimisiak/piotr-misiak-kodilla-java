@@ -1,5 +1,6 @@
 package com.kodilla.good.patterns.challenges;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +14,6 @@ final class MovieStore {
     }
 
     void addMovie(final String signature, final List<String> translations) {
-        store.put(signature, translations);
+        store.put(signature, new ArrayList<>(translations));
     }
 }
