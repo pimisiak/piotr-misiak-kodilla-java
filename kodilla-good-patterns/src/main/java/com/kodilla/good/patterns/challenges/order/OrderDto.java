@@ -1,19 +1,33 @@
 package com.kodilla.good.patterns.challenges.order;
 
-final class OrderDto {
+final class OrderDto implements Information {
     private final Order order;
-    private final boolean isProccessed;
+    private final int id;
+    private final boolean isProcessed;
 
-    OrderDto(final Order order, final boolean isProccessed) {
+    OrderDto(final Order order, final int id, final boolean isProccessed) {
         this.order = order;
-        this.isProccessed = isProccessed;
+        this.id = id;
+        this.isProcessed = isProccessed;
     }
 
-    public Order getOrder() {
+    @Override
+    public String getInformation() {
+        if (isProcessed) {
+            return String.format("Creation of order: %s has completed successfully.%n", order.getInformation());
+        }
+        return String.format("Creation of order: %s has been terminated.%n", order.getInformation());
+    }
+
+    Order getOrder() {
         return order;
     }
 
-    public boolean isProcessed() {
-        return isProccessed;
+    boolean isProcessed() {
+        return isProcessed;
+    }
+
+    int getId() {
+        return id;
     }
 }

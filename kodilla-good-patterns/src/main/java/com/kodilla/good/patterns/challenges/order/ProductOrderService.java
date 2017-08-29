@@ -13,11 +13,14 @@ final class ProductOrderService {
     }
 
     OrderDto processOrder(final Order order) {
-        if (paymentService.processPayment(order.orderPrice())) {
-            productOrderRepository.createOrder(order);
-            informationService.inform(order.getUser());
-            return new OrderDto(order, true);
+        OrderDto processedOrder = productOrderRepository.createOrder(order);
+        if (processedOrder.isProcessed()) {
+            informationService.inform(order.getUser(), processedOrder);
+            PaymentResult paymentResult = paymentService.processPayment(new PaymentRequirements(order.orderPrice(), order.getUser()));
+            informationService.inform(order.getUser(), paymentResult);
+            return processedOrder;
         }
-        return new OrderDto(order, false);
+        informationService.inform(order.getUser(), processedOrder);
+        return processedOrder;
     }
 }

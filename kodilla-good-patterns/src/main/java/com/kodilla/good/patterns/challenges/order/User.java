@@ -6,6 +6,7 @@ final class User {
     private final String lastName;
     private final String address;
     private final String email;
+    private final String bankAccountNumber;
 
     private User(final UserBuilder builder) {
         this.userName = builder.userName;
@@ -13,6 +14,12 @@ final class User {
         this.lastName = builder.lastName;
         this.address = builder.address;
         this.email = builder.email;
+        this.bankAccountNumber = builder.bankAccountNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "userName='" + userName + '\'' + '}';
     }
 
     String getUserName() {
@@ -35,12 +42,17 @@ final class User {
         return email;
     }
 
+    public String getBankAccountNumber() {
+        return bankAccountNumber;
+    }
+
     static class UserBuilder {
         private final String userName;
         private String firstName;
         private String lastName;
         private String address;
         private String email;
+        private String bankAccountNumber;
 
         UserBuilder(final String userName) {
             this.userName = userName;
@@ -63,6 +75,11 @@ final class User {
 
         UserBuilder email(final String email) {
             this.email = email;
+            return this;
+        }
+
+        UserBuilder bankAccountNumber(final String bankAccountNumber) {
+            this.bankAccountNumber = bankAccountNumber;
             return this;
         }
 
