@@ -9,10 +9,10 @@ public class ForumUserTestSuite {
     @Test
     public void testGetUsername() {
         //Given
-        ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring");
-        ForumUser user = context.getBean(ForumUser.class);
+        final ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring");
+        final ForumUser user = context.getBean(ForumUser.class);
         //When
-        String result = user.getUsername();
+        final String result = user.getUsername();
         //Then
         Assert.assertEquals("John Smith", result);
     }
