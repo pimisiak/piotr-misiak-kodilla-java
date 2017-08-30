@@ -22,8 +22,7 @@ final class Book implements Product {
 
     @Override
     public String toString() {
-        return "Book{" + "id=" + id + ", price=" + price + ", title='" + title + '\'' + ", author='" + author + '\'' + ", yearOfPublication="
-                + yearOfPublication + '}';
+        return String.format("Book{id=%d, price=%s, title='%s', author='%s', yearOfPublication=%d}", id, price, title, author, yearOfPublication);
     }
 
     @Override

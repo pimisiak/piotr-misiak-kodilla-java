@@ -13,7 +13,7 @@ final class PaymentRequirements {
         return payment;
     }
 
-    public User getUser() {
+    User getUser() {
         return user;
     }
 }

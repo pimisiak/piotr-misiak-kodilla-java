@@ -19,6 +19,11 @@ final class OrderDto implements Information {
         return String.format("Creation of order: %s has been terminated.%n", order.getInformation());
     }
 
+    @Override
+    public User getUser() {
+        return order.getUser();
+    }
+
     Order getOrder() {
         return order;
     }

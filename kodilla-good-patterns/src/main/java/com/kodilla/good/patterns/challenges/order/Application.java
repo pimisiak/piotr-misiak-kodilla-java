@@ -11,18 +11,18 @@ final class Application {
                 .email("bart@bart.com")
                 .bankAccountNumber("9999-0000-9999-0000-9999")
                 .build();
-        final Order orderForBook = new OrderImpl.OrderImplBuilder(123)
-                .user(user)
-                .dateOfOrder(LocalDateTime.of(2017, 8, 22, 12, 55, 15))
-                .shippingAddress(user.getAddress())
-                .build();
         final Product bookProduct = new Book.BookBuilder(123)
                 .author("Bruce Eckel")
                 .price(12.25)
                 .title("Thinking in Java")
                 .yearOfPublication(2007)
                 .build();
-        orderForBook.addProduct(bookProduct, 1);
+        final Order orderForBook = new OrderImpl.Builder(123)
+                .user(user)
+                .dateOfOrder(LocalDateTime.of(2017, 8, 22, 12, 55, 15))
+                .shippingAddress(user.getAddress())
+                .addProduct(bookProduct, 1)
+                .build();
 
         final ProductOrderService productOrderService = new ProductOrderService(new BankTransferService(), new MailService(), new ProductOrderRepository());
         OrderDto orderForBookDto = productOrderService.processOrder(orderForBook);

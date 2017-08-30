@@ -6,6 +6,6 @@ final class BankTransferService implements PaymentService {
         System.out.printf("Processing payment %.2f with bank transfer for account %s.%n",
                 paymentRequirements.getPayment(),
                 paymentRequirements.getUser().getBankAccountNumber());
-        return new PaymentResult(true);
+        return new PaymentResult(true, paymentRequirements.getUser());
     }
 }

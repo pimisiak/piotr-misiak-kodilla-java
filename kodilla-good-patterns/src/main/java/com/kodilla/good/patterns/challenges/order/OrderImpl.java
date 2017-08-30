@@ -10,13 +10,14 @@ final class OrderImpl implements Order {
     private final User user;
     private final LocalDateTime dateOfOrder;
     private final String shippingAddress;
-    private final Map<Product, Integer> products = new HashMap<>();
+    private final Map<Product, Integer> products;
 
-    private OrderImpl(final OrderImplBuilder builder) {
-        this.id = builder.orderId;
+    private OrderImpl(final Builder builder) {
+        this.id = builder.id;
         this.user = builder.user;
         this.dateOfOrder = builder.dateOfOrder;
         this.shippingAddress = builder.shippingAddress;
+        this.products = builder.products;
     }
 
     public double orderPrice() {
@@ -25,14 +26,11 @@ final class OrderImpl implements Order {
                 .sum();
     }
 
-    public void addProduct(final Product product, final int quantity) {
-        products.put(product, quantity);
-    }
-
     public int getId() {
         return id;
     }
 
+    @Override
     public User getUser() {
         return user;
     }
@@ -56,8 +54,7 @@ final class OrderImpl implements Order {
 
     @Override
     public String toString() {
-        return "Order{" + "id=" + id + ", user=" + user + ", dateOfOrder=" + dateOfOrder + ", shippingAddress='" + shippingAddress + '\''
-                + ", products=" + products + '}';
+        return String.format("Order{id=%d, user=%s, dateOfOrder=%s, shippingAddress='%s', products=%s}", id, user, dateOfOrder, shippingAddress, products);
     }
 
     @Override
@@ -77,28 +74,34 @@ final class OrderImpl implements Order {
         return id;
     }
 
-    static class OrderImplBuilder {
-        private final int orderId;
+    static class Builder {
+        private final int id;
         private User user;
         private LocalDateTime dateOfOrder;
         private String shippingAddress;
+        private final Map<Product, Integer> products = new HashMap<>();
 
-        OrderImplBuilder(final int orderId) {
-            this.orderId = orderId;
+        Builder(final int id) {
+            this.id = id;
         }
 
-        OrderImplBuilder user(final User user) {
+        Builder user(final User user) {
             this.user = user;
             return this;
         }
 
-        OrderImplBuilder dateOfOrder(final LocalDateTime dateOfOrder) {
+        Builder dateOfOrder(final LocalDateTime dateOfOrder) {
             this.dateOfOrder = dateOfOrder;
             return this;
         }
 
-        OrderImplBuilder shippingAddress(final String shippingAddress) {
+        Builder shippingAddress(final String shippingAddress) {
             this.shippingAddress = shippingAddress;
+            return this;
+        }
+
+        Builder addProduct(final Product product, final int quantity) {
+            products.put(product, quantity);
             return this;
         }
 

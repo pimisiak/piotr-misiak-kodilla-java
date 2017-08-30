@@ -19,7 +19,7 @@ final class User {
 
     @Override
     public String toString() {
-        return "User{" + "userName='" + userName + '\'' + '}';
+        return String.format("User{userName='%s'}", userName);
     }
 
     String getUserName() {
@@ -42,7 +42,7 @@ final class User {
         return email;
     }
 
-    public String getBankAccountNumber() {
+    String getBankAccountNumber() {
         return bankAccountNumber;
     }
 
