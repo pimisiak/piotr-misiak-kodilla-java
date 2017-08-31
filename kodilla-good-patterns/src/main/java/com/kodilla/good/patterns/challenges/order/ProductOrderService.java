@@ -13,11 +13,14 @@ final class ProductOrderService {
     }
 
     OrderDto processOrder(final Order order) {
-        OrderDto processedOrder = productOrderRepository.createOrder(order);
+        final OrderDto processedOrder = productOrderRepository.createOrder(order);
         if (processedOrder.isProcessed()) {
             informationService.inform(processedOrder);
-            PaymentResult paymentResult = paymentService.processPayment(new PaymentRequirements(order.orderPrice(), order.getUser()));
-            informationService.inform(paymentResult);
+            final PaymentResult paymentResult = paymentService.processPayment(new PaymentRequirements(order.orderPrice(), order.getUser()));
+            informationService.inform(new InformationImpl.Builder()
+                    .information(paymentResult.getInformation())
+                    .user(order.getUser())
+                    .build());
             return processedOrder;
         }
         informationService.inform(processedOrder);

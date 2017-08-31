@@ -1,28 +1,26 @@
 package com.kodilla.good.patterns.challenges.order;
 
-final class PaymentResult implements Information {
+final class PaymentResult {
     private final boolean isProcessed;
-    private final User user;
+    private final int id;
 
-    PaymentResult(final boolean isProcessed, final User user) {
+    PaymentResult(final boolean isProcessed, final int id) {
         this.isProcessed = isProcessed;
-        this.user = user;
+        this.id = id;
     }
 
-    public boolean isProcessed() {
+    boolean isProcessed() {
         return isProcessed;
     }
 
-    @Override
-    public User getUser() {
-        return user;
+    int getId() {
+        return id;
     }
 
-    @Override
-    public String getInformation() {
+    String getInformation() {
         if (isProcessed) {
-            return "Payment has completed successfully.";
+            return String.format("Transaction %d has completed successfully.", id);
         }
-        return "Payment has been terminated.";
+        return String.format("Transaction %d has been terminated.", id);
     }
 }
