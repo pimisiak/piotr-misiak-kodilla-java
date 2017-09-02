@@ -2,15 +2,22 @@ package com.kodilla.spring.calculator;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class CalculatorTestSuite {
+    @Autowired
+    private Calculator calculator;
+
     @Test
     public void testAdd() {
         //Given
-        final ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring");
-        final Calculator calculator = context.getBean(Calculator.class);
+        //calculator
         //When
         final double result = calculator.add(3.5, 2.7);
         //Then
@@ -20,8 +27,7 @@ public class CalculatorTestSuite {
     @Test
     public void testMultiply() {
         //Given
-        final ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring");
-        final Calculator calculator = context.getBean(Calculator.class);
+        //calculator
         //When
         final double result = calculator.multiply(3.5, 2.7);
         //Then
@@ -31,8 +37,7 @@ public class CalculatorTestSuite {
     @Test
     public void testDivide() {
         //Given
-        final ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring");
-        final Calculator calculator = context.getBean(Calculator.class);
+        //calculator
         //When
         final double result = calculator.divide(3.5, 2.7);
         //Then
@@ -42,8 +47,7 @@ public class CalculatorTestSuite {
     @Test
     public void testSubtract() {
         //Given
-        final ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring");
-        final Calculator calculator = context.getBean(Calculator.class);
+        //calculator
         //When
         final double result = calculator.subtract(3.5, 2.7);
         //Then
