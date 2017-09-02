@@ -17,9 +17,10 @@ public class CalculatorTestSuite {
     @Test
     public void testAdd() {
         //Given
-        //calculator
+        final double numOne = 3.5;
+        final double numTwo = 2.7;
         //When
-        final double result = calculator.add(3.5, 2.7);
+        final double result = calculator.add(numOne, numTwo);
         //Then
         Assert.assertEquals(6.2, result, 0.01);
     }
@@ -27,9 +28,10 @@ public class CalculatorTestSuite {
     @Test
     public void testMultiply() {
         //Given
-        //calculator
+        final double numOne = 3.5;
+        final double numTwo = 2.7;
         //When
-        final double result = calculator.multiply(3.5, 2.7);
+        final double result = calculator.multiply(numOne, numTwo);
         //Then
         Assert.assertEquals(9.45, result, 0.01);
     }
@@ -37,9 +39,10 @@ public class CalculatorTestSuite {
     @Test
     public void testDivide() {
         //Given
-        //calculator
+        final double numOne = 3.5;
+        final double numTwo = 2.7;
         //When
-        final double result = calculator.divide(3.5, 2.7);
+        final double result = calculator.divide(numOne, numTwo);
         //Then
         Assert.assertEquals(1.3, result, 0.01);
     }
@@ -47,9 +50,10 @@ public class CalculatorTestSuite {
     @Test
     public void testSubtract() {
         //Given
-        //calculator
+        final double numOne = 3.5;
+        final double numTwo = 2.7;
         //When
-        final double result = calculator.subtract(3.5, 2.7);
+        final double result = calculator.subtract(numOne, numTwo);
         //Then
         Assert.assertEquals(0.8, result, 0.01);
     }
