@@ -1,12 +1,21 @@
 package com.kodilla.spring.library;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 @Service
-class Library {
-    @Autowired
+final class Library {
+    private final List<String> books = new ArrayList<>();
     private LibraryDbController libraryDbController;
+
+    public Library(final LibraryDbController libraryDbController) {
+        this.libraryDbController = libraryDbController;
+    }
+
+    public Library() {
+    }
 
     void saveToDb() {
         libraryDbController.saveData();
