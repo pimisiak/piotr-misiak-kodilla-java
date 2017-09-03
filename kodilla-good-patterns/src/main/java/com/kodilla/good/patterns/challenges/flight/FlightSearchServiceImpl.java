@@ -32,22 +32,22 @@ final class FlightSearchServiceImpl implements FlightSearchService {
     public Set<Flight> findAllFlightsThroughCity(final FlightSearchRequirements flightSearchRequirements) {
         final Airport airport = flightSearchRequirements.getAirport();
 
-        LocalDateTime minArrivalTime = flightBoard.getFlights().stream()
+        final LocalDateTime minArrivalTime = flightBoard.getFlights().stream()
                 .filter(flight -> flight.getArrivalAirport().equals(airport) && flight.getDepartureTime().isAfter(LocalDateTime.now()))
                 .map(Flight::getArrivalTime)
                 .min(LocalDateTime::compareTo)
                 .orElseGet(LocalDateTime::now);
-        LocalDateTime maxDepartureTime = flightBoard.getFlights().stream()
+        final LocalDateTime maxDepartureTime = flightBoard.getFlights().stream()
                 .filter(flight -> flight.getDepartureAirport().equals(airport) && flight.getDepartureTime().isAfter(LocalDateTime.now()))
                 .map(Flight::getArrivalTime)
                 .max(LocalDateTime::compareTo)
                 .orElseGet(LocalDateTime::now);
 
-        Set<Flight> flightsToCity = flightBoard.getFlights().stream()
+        final Set<Flight> flightsToCity = flightBoard.getFlights().stream()
                 .filter(flight -> flight.getArrivalAirport().equals(airport))
                 .filter(flight -> flight.getDepartureTime().isAfter(LocalDateTime.now()) && flight.getArrivalTime().isBefore(maxDepartureTime))
                 .collect(Collectors.toSet());
-        Set<Flight> flightsFromCity = flightBoard.getFlights().stream()
+        final Set<Flight> flightsFromCity = flightBoard.getFlights().stream()
                 .filter(flight -> flight.getDepartureAirport().equals(airport))
                 .filter(flight -> flight.getDepartureTime().isAfter(LocalDateTime.now()) && flight.getDepartureTime().isAfter(minArrivalTime))
                 .collect(Collectors.toSet());
