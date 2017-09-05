@@ -7,13 +7,16 @@ import java.util.Map;
 
 final class OrderImpl implements Order {
     private final int id;
+    private final int supplierId;
     private final User user;
     private final LocalDateTime dateOfOrder;
     private final String shippingAddress;
     private final Map<Food, Integer> products;
 
+
     private OrderImpl(final Builder builder) {
         this.id = builder.id;
+        this.supplierId = builder.supplierId;
         this.user = builder.user;
         this.dateOfOrder = builder.dateOfOrder;
         this.shippingAddress = builder.shippingAddress;
@@ -51,6 +54,11 @@ final class OrderImpl implements Order {
     }
 
     @Override
+    public int getSupplierId() {
+        return supplierId;
+    }
+
+    @Override
     public String toString() {
         return String.format("Order{id=%d, user=%s, dateOfOrder=%s, shippingAddress='%s', products=%s}", id, user, dateOfOrder, shippingAddress, products);
     }
@@ -74,13 +82,15 @@ final class OrderImpl implements Order {
 
     static class Builder {
         private final int id;
+        private final int supplierId;
         private User user;
         private LocalDateTime dateOfOrder;
         private String shippingAddress;
         private final Map<Food, Integer> products = new HashMap<>();
 
-        Builder(final int id) {
+        Builder(final int id, final int supplierId) {
             this.id = id;
+            this.supplierId = supplierId;
         }
 
         Builder user(final User user) {

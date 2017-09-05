@@ -2,7 +2,7 @@ package com.kodilla.good.patterns.challenges.food2door;
 
 import java.time.LocalDate;
 
-class FoodImpl implements Food {
+final class FoodImpl implements Food {
     private final int id;
     private final String productName;
     private final FoodType foodType;

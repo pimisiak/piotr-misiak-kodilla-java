@@ -1,8 +1,14 @@
 package com.kodilla.good.patterns.challenges.food2door;
 
 final class SupplierOrderService {
-    OrderDto delegateOrderToSupplier(final OrderRequirements orderRequirements) {
-        boolean isExecuted = orderRequirements.getSupplier().process(orderRequirements.getOrder());
-        return new OrderDto(orderRequirements.getOrder(), isExecuted);
+    private final SupplierRegister supplierRegister;
+
+    SupplierOrderService(final SupplierRegister supplierRegister) {
+        this.supplierRegister = supplierRegister;
+    }
+
+    OrderDto delegateOrderToSupplier(final Order order) {
+        boolean isExecuted = supplierRegister.getSupplier(order.getSupplierId()).process(order);
+        return new OrderDto(order, isExecuted);
     }
 }

@@ -7,4 +7,5 @@ interface Order {
     int getId();
     User getUser();
     Map<Food, Integer> getProducts();
+    int getSupplierId();
 }

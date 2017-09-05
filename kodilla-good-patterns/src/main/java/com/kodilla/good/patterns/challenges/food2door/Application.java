@@ -3,7 +3,7 @@ package com.kodilla.good.patterns.challenges.food2door;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class Application {
+class Application {
     public static void main(final String[] args) {
         final User user = new User.UserBuilder("user123")
                 .address("ul Rola 12/13")
@@ -39,7 +39,27 @@ public class Application {
                 .price(3.50)
                 .build();
 
-        final Order orderForFood = new OrderImpl.Builder(123)
+        final Order orderExtraFood = new OrderImpl.Builder(123, 1)
+                .user(user)
+                .dateOfOrder(LocalDateTime.of(2017, 8, 22, 12, 55, 15))
+                .shippingAddress(user.getAddress())
+                .addProduct(tomato, 5)
+                .addProduct(chickenBreast, 1)
+                .addProduct(cheese, 2)
+                .addProduct(apple, 2)
+                .addProduct(bread, 3)
+                .build();
+        final Order orderGlutenFree = new OrderImpl.Builder(123, 2)
+                .user(user)
+                .dateOfOrder(LocalDateTime.of(2017, 8, 22, 12, 55, 15))
+                .shippingAddress(user.getAddress())
+                .addProduct(tomato, 5)
+                .addProduct(chickenBreast, 1)
+                .addProduct(cheese, 2)
+                .addProduct(apple, 2)
+                .addProduct(bread, 3)
+                .build();
+        final Order orderHealthy = new OrderImpl.Builder(123, 3)
                 .user(user)
                 .dateOfOrder(LocalDateTime.of(2017, 8, 22, 12, 55, 15))
                 .shippingAddress(user.getAddress())
@@ -50,13 +70,14 @@ public class Application {
                 .addProduct(bread, 3)
                 .build();
 
-        final OrderRequirements orderRequirementsExtraFood = new OrderRequirements(orderForFood, new ExtraFoodShopSupplier(new ProductOrderService()));
-        final OrderRequirements orderRequirementsGlutenFree = new OrderRequirements(orderForFood, new GlutenFreeShopSupplier(new ProductOrderService()));
-        final OrderRequirements orderRequirementsHealthy = new OrderRequirements(orderForFood, new HealthyShopSupplier(new ProductOrderService()));
+        SupplierRegister supplierRegister = new SupplierRegisterImpl();
+        supplierRegister.addSupplier(1, new ExtraFoodShopSupplier(new ProductOrderService()));
+        supplierRegister.addSupplier(2, new GlutenFreeShopSupplier(new ProductOrderService()));
+        supplierRegister.addSupplier(3, new HealthyShopSupplier(new ProductOrderService()));
 
-        final SupplierOrderService supplierOrderService = new SupplierOrderService();
-        supplierOrderService.delegateOrderToSupplier(orderRequirementsExtraFood);
-        supplierOrderService.delegateOrderToSupplier(orderRequirementsGlutenFree);
-        supplierOrderService.delegateOrderToSupplier(orderRequirementsHealthy);
+        final SupplierOrderService supplierOrderService = new SupplierOrderService(supplierRegister);
+        supplierOrderService.delegateOrderToSupplier(orderExtraFood);
+        supplierOrderService.delegateOrderToSupplier(orderGlutenFree);
+        supplierOrderService.delegateOrderToSupplier(orderHealthy);
     }
 }
