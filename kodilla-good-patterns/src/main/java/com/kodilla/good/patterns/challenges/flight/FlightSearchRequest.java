@@ -1,9 +1,9 @@
 package com.kodilla.good.patterns.challenges.flight;
 
-final class FlightSearchRequirements {
+final class FlightSearchRequest {
     private final Airport airport;
 
-    FlightSearchRequirements(final Airport airport) {
+    FlightSearchRequest(final Airport airport) {
         this.airport = airport;
     }
 

@@ -56,10 +56,10 @@ final class Application {
 
         final FlightSearchService flightSearchService = new FlightSearchServiceImpl(flightBoard);
         System.out.printf("==== Flights from %s ====%n", wawAirport);
-        flightSearchService.findAllFlightsFromCity(new FlightSearchRequirements(wawAirport)).forEach(System.out::println);
+        flightSearchService.findAllFlightsFromCity(new FlightSearchRequest(wawAirport)).forEach(System.out::println);
         System.out.printf("==== Flights to %s ====%n", gdnAirport);
-        flightSearchService.findAllFlightsToCity(new FlightSearchRequirements(gdnAirport)).forEach(System.out::println);
+        flightSearchService.findAllFlightsToCity(new FlightSearchRequest(gdnAirport)).forEach(System.out::println);
         System.out.printf("==== Flights through %s ====%n", krkAirport);
-        flightSearchService.findAllFlightsThroughCity(new FlightSearchRequirements(krkAirport)).forEach(System.out::println);
+        flightSearchService.findAllFlightsThroughCity(new FlightSearchRequest(krkAirport)).forEach(System.out::println);
     }
 }

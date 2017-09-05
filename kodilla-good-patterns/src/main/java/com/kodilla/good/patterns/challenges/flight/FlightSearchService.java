@@ -3,7 +3,7 @@ package com.kodilla.good.patterns.challenges.flight;
 import java.util.Set;
 
 interface FlightSearchService {
-    Set<Flight> findAllFlightsToCity(final FlightSearchRequirements flightSearchRequirements);
-    Set<Flight> findAllFlightsFromCity(final FlightSearchRequirements flightSearchRequirements);
-    Set<Flight> findAllFlightsThroughCity(final FlightSearchRequirements flightSearchRequirements);
+    Set<Flight> findAllFlightsToCity(final FlightSearchRequest flightSearchRequest);
+    Set<Flight> findAllFlightsFromCity(final FlightSearchRequest flightSearchRequest);
+    Set<Flight> findAllFlightsThroughCity(final FlightSearchRequest flightSearchRequest);
 }

@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-class FlightBoardImpl implements FlightBoard {
+final class FlightBoardImpl implements FlightBoard {
     private final Set<Flight> flights = new HashSet<>();
 
     public void addFlight(final Flight flight) {
