@@ -1,25 +1,22 @@
 package com.kodilla.patterns.singleton;
 
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.contrib.java.lang.system.SystemOutRule;
 
 public class LoggerTestSuite {
-    private static Logger logger;
-
-    @BeforeClass
-    public static void startLogger() {
-        logger = Logger.getInstance();
-    }
+    @Rule
+    public final SystemOutRule systemOutRule = new SystemOutRule();
 
     @Test
     public void testLog() {
         //Given
-        //logger
+        systemOutRule.enableLog();
         //When
-        logger.log("This is first log.");
+        Logger.getInstance().log("This is first log.");
         //Then
-        Assert.assertEquals("This is first log.", logger.getLastLog());
+        Assert.assertEquals("Log: [This is first log.]\n", systemOutRule.getLogWithNormalizedLineSeparator());
     }
 
     @Test
@@ -27,8 +24,8 @@ public class LoggerTestSuite {
         //Given
         //logger
         //When
-        logger.log("This is second log.");
-        final String result = logger.getLastLog();
+        Logger.getInstance().log("This is second log.");
+        final String result = Logger.getInstance().getLastLog();
         //Then
         Assert.assertEquals("This is second log.", result);
     }
