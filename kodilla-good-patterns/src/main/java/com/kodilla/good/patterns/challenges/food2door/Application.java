@@ -49,7 +49,7 @@ class Application {
                 .addProduct(apple, 2)
                 .addProduct(bread, 3)
                 .build();
-        final Order orderGlutenFree = new OrderImpl.Builder(123, 2)
+        final Order orderGlutenFree = new OrderImpl.Builder(123, 21)
                 .user(user)
                 .dateOfOrder(LocalDateTime.of(2017, 8, 22, 12, 55, 15))
                 .shippingAddress(user.getAddress())
