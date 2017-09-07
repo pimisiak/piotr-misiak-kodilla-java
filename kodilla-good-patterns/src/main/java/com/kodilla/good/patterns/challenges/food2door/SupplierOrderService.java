@@ -8,12 +8,7 @@ final class SupplierOrderService {
     }
 
     OrderDto delegateOrderToSupplier(final Order order) {
-        boolean isExecuted = false;
-        try {
-            isExecuted = supplierRegister.getSupplier(order.getSupplierId()).process(order);
-        } catch (MissingSupplierException e) {
-            System.out.println(e.getMessage());
-        }
+        final boolean isExecuted = supplierRegister.getSupplier(order.getSupplierId()).process(order);
         return new OrderDto(order, isExecuted);
     }
 }
