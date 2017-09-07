@@ -13,9 +13,9 @@ final class SupplierRegisterImpl implements SupplierRegister {
 
     @Override
     public Supplier getSupplier(final int id) throws MissingSupplierException {
-        if (supplierRegister.get(id) == null) {
-            throw new MissingSupplierException("Error: Missing supplier in Supplier Register");
+        if (supplierRegister.containsKey(id)) {
+            return supplierRegister.get(id);
         }
-        return supplierRegister.get(id);
+        throw new MissingSupplierException("Error: Missing supplier in Supplier Register");
     }
 }
