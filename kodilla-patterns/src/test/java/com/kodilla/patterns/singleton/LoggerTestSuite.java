@@ -25,8 +25,7 @@ public class LoggerTestSuite {
         //logger
         //When
         Logger.getInstance().log("This is second log.");
-        final String result = Logger.getInstance().getLastLog();
         //Then
-        Assert.assertEquals("This is second log.", result);
+        Assert.assertEquals("This is second log.", Logger.getInstance().getLastLog());
     }
 }
