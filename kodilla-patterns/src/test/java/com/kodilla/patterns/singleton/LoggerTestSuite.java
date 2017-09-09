@@ -14,7 +14,7 @@ public class LoggerTestSuite {
         //Given
         systemOutRule.enableLog();
         //When
-        Logger.getInstance().log("This is first log.");
+        Logger.INSTANCE.log("This is first log.");
         //Then
         Assert.assertEquals("Log: [This is first log.]\n", systemOutRule.getLogWithNormalizedLineSeparator());
     }
@@ -24,8 +24,8 @@ public class LoggerTestSuite {
         //Given
         //logger
         //When
-        Logger.getInstance().log("This is second log.");
+        Logger.INSTANCE.log("This is second log.");
         //Then
-        Assert.assertEquals("This is second log.", Logger.getInstance().getLastLog());
+        Assert.assertEquals("This is second log.", Logger.INSTANCE.getLastLog());
     }
 }
