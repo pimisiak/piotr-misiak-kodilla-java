@@ -1,5 +1,5 @@
 package com.kodilla.patterns.strategy;
 
-interface BuyPredictor {
+public interface BuyPredictor {
     String predictWhatToBuy();
 }
