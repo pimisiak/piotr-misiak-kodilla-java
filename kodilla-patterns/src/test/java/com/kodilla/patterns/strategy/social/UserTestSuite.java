@@ -23,7 +23,7 @@ public class UserTestSuite {
     @Test
     public void testIndividualSharingStrategy() {
         //Given
-        final User user = new User("user", new FacebookPublisher());
+        final User user = new YGeneration("yGeneration");
         //Then
         user.setSocialPublisher(new SnapchatPublisher());
         //When

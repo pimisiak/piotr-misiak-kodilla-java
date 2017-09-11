@@ -1,10 +1,13 @@
 package com.kodilla.patterns.strategy.social;
 
-class User {
+abstract class User {
     private final String username;
     private SocialPublisher socialPublisher;
 
     User(final String username, final SocialPublisher socialPublisher) {
+        if (socialPublisher == null || username == null) {
+            throw new IllegalArgumentException();
+        }
         this.username = username;
         this.socialPublisher = socialPublisher;
     }
@@ -18,6 +21,9 @@ class User {
     }
 
     void setSocialPublisher(final SocialPublisher socialPublisher) {
+        if (socialPublisher == null) {
+            throw new IllegalArgumentException();
+        }
         this.socialPublisher = socialPublisher;
     }
 }
