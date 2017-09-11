@@ -12,7 +12,7 @@ abstract class User {
         this.socialPublisher = socialPublisher;
     }
 
-    public String getUsername() {
+    String getUsername() {
         return username;
     }
 
