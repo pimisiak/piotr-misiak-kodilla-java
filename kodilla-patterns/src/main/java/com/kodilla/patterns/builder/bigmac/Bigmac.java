@@ -61,23 +61,10 @@ final class Bigmac {
 
         Bigmac build() {
             final Bigmac bigmac = new Bigmac(this);
-            if (validateIngredients(bigmac.ingredients) && validateSauce(bigmac.sauce) && validateBurgers(bigmac.burgers)) {
+            if (validateBurgers(bigmac.burgers)) {
                 return bigmac;
             }
             throw new IllegalStateException();
-        }
-
-        private boolean validateIngredients(final List<Ingredient> ingredients) {
-            return ingredients.stream()
-                    .allMatch(ingredient -> ingredient.equals(Ingredient.LETTUCE) || ingredient.equals(Ingredient.BACON)
-                            || ingredient.equals(Ingredient.CHEESE) || ingredient.equals(Ingredient.CHILLIPEPPER)
-                            || ingredient.equals(Ingredient.CUCUMBER) || ingredient.equals(Ingredient.MUSHROOM)
-                            || ingredient.equals(Ingredient.ONION) || ingredient.equals(Ingredient.SHRIMP)
-                    );
-        }
-
-        private boolean validateSauce(final Sauce sauce) {
-            return sauce == Sauce.STANDARD || sauce == Sauce.BBQ || sauce == Sauce.ISLAND;
         }
 
         private boolean validateBurgers(final int burgers) {
