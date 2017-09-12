@@ -7,39 +7,39 @@ public class TaskFactoryTestSuite {
     @Test
     public void testTaskFactoryDrivingTask() {
         //Given
-        final AbstractTaskFactory drivingTaskFactory = FactoryProducer.getTaskFactory(TaskType.DRIVINGTASK);
+        //TaskFactory
         //When
-        final Task drivingTask = drivingTaskFactory.getDrivingTask("Commuting", "Warsaw", "FIAT 126p");
+        final Task drivingTask = TaskFactory.makeTask(TaskFactory.DRIVINGTASK);
         //Then
-        Assert.assertEquals("Commuting", drivingTask.getTaskName());
+        Assert.assertEquals("Driving Task", drivingTask.getTaskName());
         Assert.assertFalse(drivingTask.isTaskExecuted());
-        Assert.assertEquals("Executing task Commuting in Warsaw with FIAT 126p", drivingTask.executeTask());
+        Assert.assertEquals("Executing task Driving Task in Warsaw with FIAT 126p", drivingTask.executeTask());
         Assert.assertTrue(drivingTask.isTaskExecuted());
     }
 
     @Test
     public void testTaskFactoryPaintingTask() {
         //Given
-        final AbstractTaskFactory paintingTaskFactory = FactoryProducer.getTaskFactory(TaskType.PAINTINGTASK);
+        //TaskFactory
         //When
-        final Task paintingTask = paintingTaskFactory.getPaintingTask("Painting Rembrandt", "Red", "Rembrandt");
+        final Task paintingTask = TaskFactory.makeTask(TaskFactory.PAINTINGTASK);
         //Then
-        Assert.assertEquals("Painting Rembrandt", paintingTask.getTaskName());
+        Assert.assertEquals("Painting Task", paintingTask.getTaskName());
         Assert.assertFalse(paintingTask.isTaskExecuted());
-        Assert.assertEquals("Executing task Painting Rembrandt, to paint Rembrandt with color Red", paintingTask.executeTask());
+        Assert.assertEquals("Executing task Painting Task, to paint Rembrandt with color Red", paintingTask.executeTask());
         Assert.assertTrue(paintingTask.isTaskExecuted());
     }
 
     @Test
     public void testTaskFactoryShoppingTask() {
         //Given
-        final AbstractTaskFactory shoppingTaskFactory = FactoryProducer.getTaskFactory(TaskType.SHOPPINGTASK);
+        //TaskFactory
         //When
-        final Task shoppingTask = shoppingTaskFactory.getShoppingTask("Shopping", "Egg", 12);
+        final Task shoppingTask = TaskFactory.makeTask(TaskFactory.SHOPPINGTASK);
         //Then
-        Assert.assertEquals("Shopping", shoppingTask.getTaskName());
+        Assert.assertEquals("Shopping Task", shoppingTask.getTaskName());
         Assert.assertFalse(shoppingTask.isTaskExecuted());
-        Assert.assertEquals("Executing task Shopping to buy 12.0 Egg", shoppingTask.executeTask());
+        Assert.assertEquals("Executing task Shopping Task to buy 12.0 Egg", shoppingTask.executeTask());
         Assert.assertTrue(shoppingTask.isTaskExecuted());
     }
 }
