@@ -24,7 +24,7 @@ final class TasksList {
         final StringBuilder builder = new StringBuilder(String.format("   List [%s]", name));
         for (final Task task : tasks) {
             builder.append("\n");
-            builder.append(task) ;
+            builder.append(task);
         }
         return builder.toString();
     }

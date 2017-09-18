@@ -28,7 +28,7 @@ final class Board extends Prototype {
         final StringBuilder builder = new StringBuilder(String.format("Board [%s]", name));
         for (final TasksList list : lists) {
             builder.append("\n");
-            builder.append(list) ;
+            builder.append(list);
         }
         return builder.toString();
     }
