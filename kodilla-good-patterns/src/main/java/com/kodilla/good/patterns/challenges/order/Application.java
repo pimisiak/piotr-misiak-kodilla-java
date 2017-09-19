@@ -25,6 +25,6 @@ final class Application {
                 .build();
 
         final ProductOrderService productOrderService = new ProductOrderService(new BankTransferService(), new MailService(), new ProductOrderRepository());
-        OrderDto orderForBookDto = productOrderService.processOrder(orderForBook);
+        productOrderService.processOrder(orderForBook);
     }
 }

@@ -1,7 +1,7 @@
 package com.kodilla.good.patterns.challenges.order;
 
 final class BankTransferService implements PaymentService {
-    private static int transactionId;
+    private int transactionId = 0;
 
     @Override
     public PaymentResult processPayment(final PaymentRequirements paymentRequirements) {

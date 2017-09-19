@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.stream.IntStream;
 
 public class LibraryTestSuite {
-    private static Library library;
+    private Library library;
 
     @Before
     public void beforeTest() {
