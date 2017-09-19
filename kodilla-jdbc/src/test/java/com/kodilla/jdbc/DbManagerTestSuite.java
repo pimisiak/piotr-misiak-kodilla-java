@@ -11,19 +11,20 @@ public class DbManagerTestSuite {
     @Test
     public void testConnect() throws SQLException {
         //Given
+        //DbManager
         //When
-        final DbManager dbManager = DbManager.getInstance();
+        //DbManager
         //Then
-        Assert.assertNotNull(dbManager.getConnection());
+        Assert.assertNotNull(DbManager.INSTANCE.getConnection());
     }
 
     @Test
     public void testSelectedUsers() throws SQLException {
         //Given
-        final DbManager dbManager = DbManager.getInstance();
+        //DbManager
         //When
         final String sqlQuery = "select * from users";
-        final Statement statement = dbManager.getConnection().createStatement();
+        final Statement statement = DbManager.INSTANCE.getConnection().createStatement();
         final ResultSet resultSet = statement.executeQuery(sqlQuery);
         int counter = 0;
         while (resultSet.next()) {
@@ -39,13 +40,13 @@ public class DbManagerTestSuite {
     @Test
     public void testSelectUsersAndPosts() throws SQLException {
         //Given
-        final DbManager dbManager = DbManager.getInstance();
+        //DbManager
         //When
         final String sqlQuery = "select count(*) num_of_posts, firstname, lastname\n" +
                 "from posts p inner join users u on p.user_id = u.id\n" +
                 "group by firstname, lastname\n" +
                 "having count(*) >= 2;";
-        final Statement statement = dbManager.getConnection().createStatement();
+        final Statement statement = DbManager.INSTANCE.getConnection().createStatement();
         final ResultSet resultSet = statement.executeQuery(sqlQuery);
         int counter = 0;
         while (resultSet.next()) {

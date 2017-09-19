@@ -5,22 +5,21 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-class DbManager {
-    private final Connection conn;
-    private static DbManager dbManagerInstance;
+enum DbManager {
+    INSTANCE;
 
-    private DbManager() throws SQLException {
+    private final Connection conn;
+
+    DbManager() {
         final Properties connectionProps = new Properties();
         connectionProps.put("user", "kodilla_user");
         connectionProps.put("password", "kodilla_password");
-        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kodilla_course?serverTimezone=Europe/Warsaw&useSSL=False", connectionProps);
-    }
-
-    static DbManager getInstance() throws SQLException {
-        if (dbManagerInstance == null) {
-            dbManagerInstance = new DbManager();
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kodilla_course?serverTimezone=Europe/Warsaw&useSSL=False", connectionProps);
+        } catch (SQLException e) {
+            throw new RuntimeException();
         }
-        return dbManagerInstance;
+
     }
 
     Connection getConnection() {
