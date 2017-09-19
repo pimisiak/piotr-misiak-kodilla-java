@@ -1,5 +1,6 @@
 package com.kodilla.jdbc;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,40 +22,59 @@ public class DbManagerTestSuite {
     @Test
     public void testSelectedUsers() throws SQLException {
         //Given
-        //DbManager
-        //When
         final String sqlQuery = "select * from users";
         final Statement statement = DbManager.INSTANCE.getConnection().createStatement();
+        //When
         final ResultSet resultSet = statement.executeQuery(sqlQuery);
-        int counter = 0;
-        while (resultSet.next()) {
-            System.out.printf("%d, %s, %s%n", resultSet.getInt("ID"), resultSet.getString("firstname"), resultSet.getString("lastname"));
-            counter++;
-        }
+        //Then
+        Assert.assertEquals(5, countResultSet(resultSet));
         resultSet.close();
         statement.close();
-        //Then
-        Assert.assertEquals(5, counter);
     }
 
     @Test
     public void testSelectUsersAndPosts() throws SQLException {
         //Given
-        //DbManager
-        //When
-        final String sqlQuery = "select count(*) num_of_posts, firstname, lastname\n" +
+        final String sqlQuery =
+                "select count(*) num_of_posts, firstname, lastname\n" +
                 "from posts p inner join users u on p.user_id = u.id\n" +
                 "group by firstname, lastname\n" +
                 "having count(*) >= 2;";
         final Statement statement = DbManager.INSTANCE.getConnection().createStatement();
+        //When
         final ResultSet resultSet = statement.executeQuery(sqlQuery);
+        //Then
+        Assert.assertEquals(2, countResultSet(resultSet));
+        resultSet.close();
+        statement.close();
+    }
+
+    @Test
+    public void testSelectUsersAndTasks() throws SQLException {
+        //Given
+        final String sqlQuery =
+                "select firstname, lastname, summary, description\n" +
+                "from users u\n" +
+                "inner join tasks t\n" +
+                "on t.user_id = u.id\n" +
+                "where firstname = ?\n" +
+                "and tasklist_id = ?;";
+        final PreparedStatement preparedStatement = DbManager.INSTANCE.getConnection().prepareStatement(sqlQuery);
+        preparedStatement.setString(1,"John");
+        preparedStatement.setInt(2, 1);
+        //When
+        final ResultSet resultSet = preparedStatement.executeQuery();
+        //Then
+        Assert.assertEquals(2, countResultSet(resultSet));
+        resultSet.close();
+        preparedStatement.close();
+    }
+
+    private int countResultSet(final ResultSet resultSet) throws SQLException {
         int counter = 0;
         while (resultSet.next()) {
             counter++;
         }
-        resultSet.close();
-        statement.close();
-        //Then
-        Assert.assertEquals(2, counter);
+        return counter;
     }
 }
