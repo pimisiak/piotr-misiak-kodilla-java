@@ -17,9 +17,8 @@ enum DbManager {
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kodilla_course?serverTimezone=Europe/Warsaw&useSSL=False", connectionProps);
         } catch (SQLException e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e.getMessage(), e);
         }
-
     }
 
     Connection getConnection() {
