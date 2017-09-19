@@ -93,6 +93,6 @@ public class ShapeCollectorTestSuite {
         final String result = shapeCollector.showFigures();
         //Then
         System.out.println("Test showFigures");
-        Assert.assertEquals(result, "Triangle - 1,00; Square - 1,00; Circle - 3,14");
+        Assert.assertEquals(result, "Triangle - 1.00; Square - 1.00; Circle - 3.14");
     }
 }
