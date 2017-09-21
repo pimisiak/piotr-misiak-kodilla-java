@@ -55,7 +55,7 @@ public class DbManagerTestSuite {
         final String sqlQuery =
                 "select firstname, lastname, summary, description\n" +
                 "from users u\n" +
-                "inner join tasks t\n" +
+                "inner join tasksNotUsed t\n" +
                 "on t.user_id = u.id\n" +
                 "where firstname = ?\n" +
                 "and tasklist_id = ?;";
