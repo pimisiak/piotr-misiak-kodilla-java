@@ -19,7 +19,7 @@ public class TaskListDaoTestSuite {
     private TaskListDao taskListDao;
 
     @Test
-    public void findByListName() {
+    public void testFindByListName() {
         //Given
         final TaskList taskList = new TaskList("Test", "Test task list");
         taskListDao.save(taskList);
