@@ -1,7 +1,9 @@
 package com.kodilla.hibernate.tasklist.dao;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.groups.Tuple.tuple;
+
 import com.kodilla.hibernate.tasklist.TaskList;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +26,10 @@ public class TaskListDaoTestSuite {
         //When
         final List<TaskList> foundTaskLists = taskListDao.findByListName(taskList.getListName());
         //Then
-        Assert.assertEquals(1, foundTaskLists.size());
-        Assert.assertEquals(taskList.getListName(), foundTaskLists.get(0).getListName());
-        Assert.assertEquals(taskList.getDescription(), foundTaskLists.get(0).getDescription());
+        assertThat(foundTaskLists)
+                .hasSize(1)
+                .extracting("listName", "description")
+                .contains(tuple(taskList.getListName(), taskList.getDescription()));
         //Clean up
         taskListDao.delete(foundTaskLists.get(0).getId());
     }
