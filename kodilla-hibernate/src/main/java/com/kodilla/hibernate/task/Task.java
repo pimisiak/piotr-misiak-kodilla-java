@@ -1,11 +1,18 @@
 package com.kodilla.hibernate.task;
 
+import com.kodilla.hibernate.tasklist.TaskList;
+
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -17,6 +24,8 @@ public class Task {
     private String description;
     private Date created;
     private int duration;
+    private TaskFinancialDetails taskFinancialDetails;
+    private TaskList taskList;
 
     public Task() {
     }
@@ -57,6 +66,18 @@ public class Task {
         return duration;
     }
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "tasks_financials_id")
+    public TaskFinancialDetails getTaskFinancialDetails() {
+        return taskFinancialDetails;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "tasklist_id")
+    public TaskList getTaskList() {
+        return taskList;
+    }
+
     private void setId(final int id) {
         this.id = id;
     }
@@ -71,5 +92,13 @@ public class Task {
 
     private void setDuration(final int duration) {
         this.duration = duration;
+    }
+
+    public void setTaskFinancialDetails(final TaskFinancialDetails taskFinancialDetails) {
+        this.taskFinancialDetails = taskFinancialDetails;
+    }
+
+    public void setTaskList(final TaskList taskList) {
+        this.taskList = taskList;
     }
 }
