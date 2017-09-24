@@ -17,7 +17,6 @@ import javax.validation.constraints.NotNull;
 public class Product {
     private int id;
     private String name;
-    private List<Item> items = new ArrayList<>();
 
     protected Product() {
     }
@@ -40,24 +39,11 @@ public class Product {
         return name;
     }
 
-    @OneToMany(
-            mappedBy = "product",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    public List<Item> getItems() {
-        return items;
-    }
-
     private void setId(final int id) {
         this.id = id;
     }
 
     private void setName(final String name) {
         this.name = name;
-    }
-
-    public void setItems(final List<Item> items) {
-        this.items = items;
     }
 }

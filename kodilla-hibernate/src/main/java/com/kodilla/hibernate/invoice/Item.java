@@ -48,7 +48,7 @@ public class Item {
         return id;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "product_id")
     public Product getProduct() {
         return product;
