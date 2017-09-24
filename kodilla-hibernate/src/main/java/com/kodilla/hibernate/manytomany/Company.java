@@ -11,9 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+@NamedNativeQuery(
+        name = "Company.searchCompaniesWithFirstThreeLettersInName",
+        query = "SELECT * FROM companies WHERE strcmp(substr(company_name, 1, 3), :LETTERS) = 0",
+        resultClass = Company.class
+)
 @Entity
 @Table(name = "companies")
 public class Company {

@@ -10,10 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-
+@NamedQuery(
+        name = "Employee.searchEmployeesWithLastname",
+        query = "FROM Employee WHERE lower(lastname) = lower(:LASTNAME)"
+)
 @Entity
 @Table(name = "employees")
 public class Employee {
