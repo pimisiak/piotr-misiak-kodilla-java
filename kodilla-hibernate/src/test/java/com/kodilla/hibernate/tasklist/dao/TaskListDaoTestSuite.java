@@ -5,7 +5,9 @@ import static org.assertj.core.groups.Tuple.tuple;
 
 import com.kodilla.hibernate.task.Task;
 import com.kodilla.hibernate.task.TaskFinancialDetails;
+import com.kodilla.hibernate.task.dao.TaskDao;
 import com.kodilla.hibernate.tasklist.TaskList;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,8 @@ import java.util.List;
 public class TaskListDaoTestSuite {
     @Autowired
     private TaskListDao taskListDao;
+    @Autowired
+    private TaskDao taskDao;
 
     @Test
     public void testFindByListName() {
@@ -57,5 +61,55 @@ public class TaskListDaoTestSuite {
         assertThat(taskList.getId()).isNotEqualTo(0);
         //Clean Up
         //taskListDao.delete(taskList.getId());
+    }
+
+    @Test
+    public void testNamedQueries() {
+        //Given
+        final Task task1 = new Task("Test: Study Hibernate", 3);
+        final Task task2 = new Task("Test: Practice Named Queries", 6);
+        final Task task3 = new Task("Test: Study native queries", 7);
+        final Task task4 = new Task("Test: Make some tests", 13);
+
+        final TaskFinancialDetails tfd1 = new TaskFinancialDetails(new BigDecimal(5), false);
+        final TaskFinancialDetails tfd2 = new TaskFinancialDetails(new BigDecimal(10), false);
+        final TaskFinancialDetails tfd3 = new TaskFinancialDetails(new BigDecimal(20), false);
+        final TaskFinancialDetails tfd4 = new TaskFinancialDetails(new BigDecimal(15), false);
+
+        task1.setTaskFinancialDetails(tfd1);
+        task2.setTaskFinancialDetails(tfd2);
+        task3.setTaskFinancialDetails(tfd3);
+        task4.setTaskFinancialDetails(tfd4);
+
+        final TaskList taskList = new TaskList("ToDo", "ToDo tasks");
+        taskList.getTasks().add(task1);
+        taskList.getTasks().add(task2);
+        taskList.getTasks().add(task3);
+        taskList.getTasks().add(task4);
+
+        task1.setTaskList(taskList);
+        task2.setTaskList(taskList);
+        task3.setTaskList(taskList);
+        task4.setTaskList(taskList);
+
+        taskListDao.save(taskList);
+        int id = taskList.getId();
+
+        //When
+        final List<Task> longTasks = taskDao.retrieveLongTasks();
+        final List<Task> shortTasks = taskDao.retrieveShortTasks();
+        final List<Task> enoughTimeTasks = taskDao.retrieveTasksWithEnoughTime();
+        final List<Task> durationLongerThanTasks = taskDao.retrieveTasksWithDurationLongerThan(6);
+
+        //Then
+        try {
+            Assert.assertEquals(1, longTasks.size());
+            Assert.assertEquals(3, shortTasks.size());
+            Assert.assertEquals(3, enoughTimeTasks.size());
+            Assert.assertEquals(2, durationLongerThanTasks.size());
+        } finally {
+            //CleanUp
+            taskListDao.delete(id);
+        }
     }
 }
