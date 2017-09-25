@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 
 @NamedNativeQuery(
         name = "Company.searchCompaniesWithFirstThreeLettersInName",
-        query = "SELECT * FROM companies WHERE strcmp(substr(company_name, 1, 3), :LETTERS) = 0",
+        query = "SELECT * FROM companies WHERE substr(company_name, 1, 3) = :LETTERS",
         resultClass = Company.class
 )
 @Entity
