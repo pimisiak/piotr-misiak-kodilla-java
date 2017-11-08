@@ -79,7 +79,7 @@ public class Task {
     @NotNull
     @Column(name = "created")
     public Date getCreated() {
-        return created;
+        return (Date)created.clone();
     }
 
     @Column(name = "duration")

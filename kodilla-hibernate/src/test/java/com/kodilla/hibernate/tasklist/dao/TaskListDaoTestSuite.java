@@ -60,7 +60,7 @@ public class TaskListDaoTestSuite {
         //Then
         assertThat(taskList.getId()).isNotEqualTo(0);
         //Clean Up
-        //taskListDao.delete(taskList.getId());
+        taskListDao.delete(taskList.getId());
     }
 
     @Test

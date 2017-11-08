@@ -49,7 +49,7 @@ public class CompanyDaoTestSuite {
             companyDao.delete(dataMaesters.getId());
             companyDao.delete(greyMatter.getId());
         } catch (Exception e) {
-            // do nothing
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -69,7 +69,7 @@ public class CompanyDaoTestSuite {
             companyDao.delete(dataMaesters.getId());
             companyDao.delete(greyMatter.getId());
         } catch (Exception e) {
-            // do nothing
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -94,7 +94,7 @@ public class CompanyDaoTestSuite {
             companyDao.delete(dataMaestersId);
             companyDao.delete(greyMatterId);
         } catch (Exception e) {
-                //do nothing
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
