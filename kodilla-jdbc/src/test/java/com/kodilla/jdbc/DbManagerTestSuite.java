@@ -8,6 +8,8 @@ import java.sql.Statement;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static java.util.Optional.ofNullable;
+
 public class DbManagerTestSuite {
     @Test
     public void testConnect() throws SQLException {
@@ -23,13 +25,14 @@ public class DbManagerTestSuite {
     public void testSelectedUsers() throws SQLException {
         //Given
         final String sqlQuery = "select * from users";
-        final Statement statement = DbManager.INSTANCE.getConnection().createStatement();
         //When
-        final ResultSet resultSet = statement.executeQuery(sqlQuery);
-        //Then
-        Assert.assertEquals(5, countResultSet(resultSet));
-        resultSet.close();
-        statement.close();
+        try (final Statement statement = DbManager.INSTANCE.getConnection().createStatement();
+             final ResultSet resultSet = statement.executeQuery(sqlQuery)) {
+            //Then
+            Assert.assertEquals(5, countResultSet(resultSet));
+            resultSet.close();
+            statement.close();
+        }
     }
 
     @Test
@@ -40,13 +43,14 @@ public class DbManagerTestSuite {
                 "from posts p inner join users u on p.user_id = u.id\n" +
                 "group by firstname, lastname\n" +
                 "having count(*) >= 2;";
-        final Statement statement = DbManager.INSTANCE.getConnection().createStatement();
         //When
-        final ResultSet resultSet = statement.executeQuery(sqlQuery);
-        //Then
-        Assert.assertEquals(2, countResultSet(resultSet));
-        resultSet.close();
-        statement.close();
+        try (final Statement statement = DbManager.INSTANCE.getConnection().createStatement();
+             final ResultSet resultSet = statement.executeQuery(sqlQuery)) {
+            //Then
+            Assert.assertEquals(2, countResultSet(resultSet));
+            resultSet.close();
+            statement.close();
+        }
     }
 
     @Test
@@ -59,15 +63,16 @@ public class DbManagerTestSuite {
                 "on t.user_id = u.id\n" +
                 "where firstname = ?\n" +
                 "and tasklist_id = ?;";
-        final PreparedStatement preparedStatement = DbManager.INSTANCE.getConnection().prepareStatement(sqlQuery);
-        preparedStatement.setString(1,"John");
-        preparedStatement.setInt(2, 1);
         //When
-        final ResultSet resultSet = preparedStatement.executeQuery();
-        //Then
-        Assert.assertEquals(2, countResultSet(resultSet));
-        resultSet.close();
-        preparedStatement.close();
+        try (final PreparedStatement preparedStatement = DbManager.INSTANCE.getConnection().prepareStatement(sqlQuery);
+             final ResultSet resultSet = preparedStatement.executeQuery()) {
+            preparedStatement.setString(1,"John");
+            preparedStatement.setInt(2, 1);
+            //Then
+            Assert.assertEquals(2, countResultSet(resultSet));
+            resultSet.close();
+            preparedStatement.close();
+        }
     }
 
     private int countResultSet(final ResultSet resultSet) throws SQLException {
