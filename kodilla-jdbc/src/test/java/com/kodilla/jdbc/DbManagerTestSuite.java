@@ -74,10 +74,11 @@ public class DbManagerTestSuite {
     }
 
     private PreparedStatement createPreparedStatement(final String sqlQuery) throws SQLException {
-        final PreparedStatement preparedStatement = DbManager.INSTANCE.getConnection().prepareStatement(sqlQuery);
-        preparedStatement.setString(1, "John");
-        preparedStatement.setInt(2, 1);
-        return preparedStatement;
+        try (final PreparedStatement preparedStatement = DbManager.INSTANCE.getConnection().prepareStatement(sqlQuery)) {
+            preparedStatement.setString(1, "John");
+            preparedStatement.setInt(2, 1);
+            return preparedStatement;
+        }
     }
 
     private int countResultSet(final ResultSet resultSet) throws SQLException {
