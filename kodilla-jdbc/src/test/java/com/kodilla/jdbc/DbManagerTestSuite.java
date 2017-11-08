@@ -30,8 +30,6 @@ public class DbManagerTestSuite {
              final ResultSet resultSet = statement.executeQuery(sqlQuery)) {
             //Then
             Assert.assertEquals(5, countResultSet(resultSet));
-            resultSet.close();
-            statement.close();
         }
     }
 
@@ -48,8 +46,6 @@ public class DbManagerTestSuite {
              final ResultSet resultSet = statement.executeQuery(sqlQuery)) {
             //Then
             Assert.assertEquals(2, countResultSet(resultSet));
-            resultSet.close();
-            statement.close();
         }
     }
 
@@ -64,20 +60,12 @@ public class DbManagerTestSuite {
                 "where firstname = ?\n" +
                 "and tasklist_id = ?;";
         //When
-        try (final PreparedStatement preparedStatement = createPreparedStatement(sqlQuery);
-             final ResultSet resultSet = preparedStatement.executeQuery()) {
-            //Then
-            Assert.assertEquals(2, countResultSet(resultSet));
-            resultSet.close();
-            preparedStatement.close();
-        }
-    }
-
-    private PreparedStatement createPreparedStatement(final String sqlQuery) throws SQLException {
         try (final PreparedStatement preparedStatement = DbManager.INSTANCE.getConnection().prepareStatement(sqlQuery)) {
             preparedStatement.setString(1, "John");
             preparedStatement.setInt(2, 1);
-            return preparedStatement;
+            try (final ResultSet resultSet = preparedStatement.executeQuery()) {
+                Assert.assertEquals(2, countResultSet(resultSet));
+            }
         }
     }
 
