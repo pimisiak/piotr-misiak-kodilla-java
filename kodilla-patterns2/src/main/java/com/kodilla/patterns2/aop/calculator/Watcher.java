@@ -24,7 +24,8 @@ public class Watcher {
     }
 
     @Around(
-            value = "execution(* com.kodilla.patterns2.aop.calculator.Calculator.factorial(..))"
+            value = "execution(* com.kodilla.patterns2.aop.calculator.Calculator.factorial(..))",
+            argNames = "proceedingJoinPoint"
     )
     public Object measureTime(final ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         Object result;
