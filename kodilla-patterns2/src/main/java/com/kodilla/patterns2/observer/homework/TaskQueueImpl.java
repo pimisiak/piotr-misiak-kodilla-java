@@ -1,7 +1,5 @@
 package com.kodilla.patterns2.observer.homework;
 
-import com.google.common.base.Preconditions;
-
 import static java.util.Optional.ofNullable;
 
 import java.util.ArrayDeque;
@@ -36,7 +34,7 @@ public class TaskQueueImpl implements TaskQueue {
         if (result) {
             notifyObservers();
         }
-        return tasks.offerLast(task);
+        return result;
     }
 
     @Override
