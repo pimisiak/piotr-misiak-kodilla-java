@@ -1,9 +1,9 @@
-package com.kodilla.patterns2.adapter.bookclasifier;
+package com.kodilla.patterns2.adapter.bookclassifier;
 
-import com.kodilla.patterns2.adapter.bookclasifier.libraryb.Book;
-import com.kodilla.patterns2.adapter.bookclasifier.libraryb.BookSignature;
-import com.kodilla.patterns2.adapter.bookclasifier.libraryb.BookStatistics;
-import com.kodilla.patterns2.adapter.bookclasifier.libraryb.BookStatisticsImpl;
+import com.kodilla.patterns2.adapter.bookclassifier.libraryb.Book;
+import com.kodilla.patterns2.adapter.bookclassifier.libraryb.BookSignature;
+import com.kodilla.patterns2.adapter.bookclassifier.libraryb.BookStatistics;
+import com.kodilla.patterns2.adapter.bookclassifier.libraryb.BookStatisticsImpl;
 
 import java.util.Map;
 
