@@ -13,7 +13,7 @@ public class MedianAdapterTestSuite {
     public void testPublicationYearMedian() {
         //Given
         final Set<Book> books = prepareTestSetOfBooks();
-        final MedianAdapter medianAdapter = new MedianAdapter();
+        final MedianAdapter medianAdapter = new MedianAdapter(new MedianAdaptee());
         //When
         final int result = medianAdapter.publicationYearMedian(books);
         //Then
