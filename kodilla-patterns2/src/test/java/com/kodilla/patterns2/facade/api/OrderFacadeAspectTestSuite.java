@@ -6,7 +6,6 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -43,5 +42,4 @@ public class OrderFacadeAspectTestSuite {
         //Then
         verify(orderFacadeAspectLogger, times(1)).info(order, 1L);
     }
-
 }
