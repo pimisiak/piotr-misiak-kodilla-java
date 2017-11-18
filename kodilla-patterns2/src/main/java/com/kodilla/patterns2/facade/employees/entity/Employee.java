@@ -1,13 +1,12 @@
 package com.kodilla.patterns2.facade.employees.entity;
 
-import com.sun.istack.internal.NotNull;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @NamedQuery(
         name = "Employee.searchByName",
