@@ -12,6 +12,7 @@ public class ForumUser implements Observer {
     public void update(final ForumTopic forumTopic) {
         System.out.println(String.format("%s: New messages in topic %s%n(total: %d messages)",
                 username, forumTopic.getName(), forumTopic.getMessages().size()));
+        updateCount++;
     }
 
     public String getUsername() {
