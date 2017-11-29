@@ -15,6 +15,6 @@ public class LoopAndConditionalBreakpointsTest {
             System.out.println(String.format("[ %d ] sum equals: %d", n, sum));
         }
         //Then
-        assertEquals(4995000, sum);
+        assertEquals(499500, sum);
     }
 }
