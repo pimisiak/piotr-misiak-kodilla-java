@@ -26,7 +26,7 @@ public class FacebookUserImpl implements FacebookUser {
     }
 
     private String generatePassword() {
-        return String.format("%s%s%s", String.valueOf(hashCode()), firstName, lastName);
+        return String.format("%d%s%s", hashCode(), firstName, lastName);
     }
 
     @Override
